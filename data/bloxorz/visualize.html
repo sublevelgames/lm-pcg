@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mindcraft Puzzle Visualizer</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .controls {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .file-selector {
+            margin-right: 10px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .puzzle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 20px;
+        }
+        .puzzle-container {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .puzzle-info {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        canvas {
+            border: 1px solid #ddd;
+            display: block;
+            margin: 0 auto;
+        }
+        .error {
+            color: red;
+            padding: 10px;
+        }
+        .puzzle-info {
+            margin-bottom: 10px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .puzzle-info small {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mindcraft Puzzle Visualizer</h1>
+    
+    <div class="controls">
+        <label>Select puzzle file:</label>
+        <select id="fileSelector" class="file-selector">
+            <option value="puzzle_no_gimmick_all.json">No Gimmick</option>
+            <option value="puzzle_bridge_all.json">Bridge</option>
+            <option value="puzzle_glass_all.json">Glass</option>
+            <option value="puzzle_switch_all.json">Switch</option>
+        </select>
+        <span id="puzzleCount"></span>
+        <label style="margin-left: 20px;">
+            <input type="checkbox" id="showCollectables"> Show Collectables
+        </label>
+        <label style="margin-left: 20px;">
+            <input type="checkbox" id="showSolution" checked> Show Solution
+        </label>
+    </div>
+    
+    <div id="error" class="error" style="display:none;"></div>
+    <div id="puzzles" class="puzzle-grid"></div>
+
+    <script>
+        const TILE_SIZE = 30;
+        const COLORS = {
+            '_': '#333',        // void
+            '.': '#e0e0e0',     // floor
+            '1': '#4CAF50',     // player
+            '2': '#4CAF50',     // player type 2
+            '3': '#4CAF50',     // player type 3
+            'g': '#FF5722',     // goal
+            '*': '#64B5F6',     // glass
+            'a': '#FFC107',     // switch a
+            'b': '#FFA726',     // switch b
+            'c': '#FF7043',     // switch c
+            'd': '#AB47BC',     // switch d
+            'e': '#7E57C2',     // switch e
+            'A': '#FFB300',     // switch wall A
+            'B': '#FB8C00',     // switch wall B
+            'C': '#F4511E',     // switch wall C
+            'D': '#8E24AA',     // switch wall D
+            'E': '#5E35B1',     // switch wall E
+            'H': '#9C27B0',     // bridge
+            'h': '#7B1FA2',     // bridge switch
+            'o': '#795548',     // obstacle
+            '-': '#F44336',     // laser horizontal
+            '+': '#E91E63'      // laser vertical
+        };
+
+        let currentPuzzles = [];
+        let showCollectables = false;
+        let showSolution = true;
+
+        async function loadPuzzleFile(filename) {
+            try {
+                const response = await fetch(filename);
+                if (!response.ok) {
+                    throw new Error(`Failed to load ${filename}`);
+                }
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                showError(`Error loading ${filename}: ${error.message}`);
+                return [];
+            }
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('error');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+
+        function hideError() {
+            document.getElementById('error').style.display = 'none';
+        }
+
+        function drawPuzzle(puzzle, index) {
+            const container = document.createElement('div');
+            container.className = 'puzzle-container';
+            
+            // 정보 표시 부분을 찾아서 다음과 같이 수정
+            const info = document.createElement('div');
+            info.className = 'puzzle-info';
+            let gimmickText = puzzle.gimmick ? puzzle.gimmick.join(', ') : 'none';
+
+            // move 배열을 파싱하여 표시
+            let moveText = '';
+            if (puzzle.move && puzzle.move.length > 0) {
+                moveText = puzzle.move.map((move, idx) => {
+                    const parts = move.split('#');
+                    const x = parts[0];
+                    const y = parts[1];
+                    const type = parts[2];
+                    return `(${x},${y})`;
+                }).join(' → ');
+            }
+
+            info.innerHTML = `
+                <strong>Puzzle ${index + 1}</strong> | 
+                Size: ${puzzle.grid_w}x${puzzle.grid_h} | 
+                Gimmicks: ${gimmickText} | 
+                Moves: ${puzzle.move.length}<br>
+                <small style="color: #666;">Path: ${moveText}</small>
+            `;
+            
+            // Canvas 생성
+            const canvas = document.createElement('canvas');
+            canvas.width = puzzle.grid_w * TILE_SIZE;
+            canvas.height = puzzle.grid_h * TILE_SIZE;
+            const ctx = canvas.getContext('2d');
+            
+            // 그리드 그리기
+            for (let i = 0; i < puzzle.grid.length; i++) {
+                const x = (i % puzzle.grid_w) * TILE_SIZE;
+                const y = Math.floor(i / puzzle.grid_w) * TILE_SIZE;
+                const tile = puzzle.grid[i];
+                
+                // 타일 배경
+                ctx.fillStyle = COLORS[tile] || '#666';
+                ctx.fillRect(x, y, TILE_SIZE, TILE_SIZE);
+                
+                // 타일 테두리
+                ctx.strokeStyle = '#999';
+                ctx.strokeRect(x, y, TILE_SIZE, TILE_SIZE);
+                
+                // 특수 타일 표시
+                ctx.fillStyle = '#fff';
+                ctx.font = '16px Arial';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                
+                if (tile === '1' || tile === '2' || tile === '3') {
+                    // 플레이어 블록 (1x1x2 표시)
+                    ctx.fillStyle = '#fff';
+                    ctx.fillRect(x + 5, y + 5, TILE_SIZE - 10, TILE_SIZE - 10);
+                    ctx.fillStyle = COLORS[tile];
+                    ctx.fillRect(x + 8, y + 8, TILE_SIZE - 16, TILE_SIZE - 16);
+                    ctx.fillStyle = '#fff';
+                    ctx.fillText(tile, x + TILE_SIZE/2, y + TILE_SIZE/2);
+                } else if (tile === 'g') {
+                    ctx.fillText('G', x + TILE_SIZE/2, y + TILE_SIZE/2);
+                } else if (tile === '*') {
+                    ctx.fillText('※', x + TILE_SIZE/2, y + TILE_SIZE/2);
+                } else if (tile === 'o') {
+                    ctx.fillText('O', x + TILE_SIZE/2, y + TILE_SIZE/2);
+                } else if (tile === '-' || tile === '+') {
+                    ctx.fillText(tile, x + TILE_SIZE/2, y + TILE_SIZE/2);
+                } else if (tile !== '_' && tile !== '.') {
+                    ctx.fillStyle = '#000';
+                    ctx.fillText(tile, x + TILE_SIZE/2, y + TILE_SIZE/2);
+                }
+            }
+            
+            // Collectables 그리기
+            if (showCollectables && puzzle.collectables) { // 조건 추가
+                const collectables = puzzle.collectables.split('#').map(c => parseInt(c));
+                ctx.fillStyle = COLORS.collectable || '#FFD700';
+                collectables.forEach(pos => {
+                    if (!isNaN(pos)) {
+                        const x = (pos % puzzle.grid_w) * TILE_SIZE;
+                        const y = Math.floor(pos / puzzle.grid_w) * TILE_SIZE;
+                        ctx.beginPath();
+                        ctx.arc(x + TILE_SIZE/2, y + TILE_SIZE/2, 8, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                });
+            }
+
+            // 이동 경로 시각화
+            if (showSolution && puzzle.move && puzzle.move.length > 0) {
+                // 플레이어 블록 형태 정의 (pos_obj와 동일)
+                const playerShapes = {
+                    '1': [[0, 0]],           // 1x1 (서있는 상태)
+                    '2': [[0, 0], [1, 0]],   // 2x1 (가로로 누운 상태)
+                    '3': [[0, -1], [0, 0]]   // 1x2 (세로로 누운 상태)
+                };
+                
+                // 각 이동 위치 그리기
+                puzzle.move.forEach((move, idx) => {
+                    const parts = move.split('#');
+                    const px = parseInt(parts[0]);
+                    const py = parseInt(parts[1]);
+                    const ptype = parts[2];
+                    
+                    // 플레이어 타입에 따른 모양 가져오기
+                    const shape = playerShapes[ptype] || playerShapes['1'];
+                    
+                    // 반투명하게 그리기 (이동 순서에 따라 투명도 조절)
+                    const opacity = 0.3 + (idx / puzzle.move.length) * 0.4;
+                    
+                    // 블록 타입에 따라 하나의 연결된 모양으로 그리기
+                    ctx.fillStyle = `rgba(76, 175, 80, ${opacity})`;
+                    ctx.strokeStyle = `rgba(33, 150, 33, ${opacity})`;
+                    ctx.lineWidth = 2;
+                    
+                    if (ptype === '1') {
+                        // 1x1 블록 (서있는 상태)
+                        const blockX = px * TILE_SIZE;
+                        const blockY = py * TILE_SIZE;
+                        ctx.fillRect(blockX + 4, blockY + 4, TILE_SIZE - 8, TILE_SIZE - 8);
+                        ctx.strokeRect(blockX + 4, blockY + 4, TILE_SIZE - 8, TILE_SIZE - 8);
+                    } else if (ptype === '2') {
+                        // 2x1 블록 (가로로 누운 상태) - 하나의 긴 사각형
+                        const blockX = px * TILE_SIZE;
+                        const blockY = py * TILE_SIZE;
+                        ctx.fillRect(blockX + 4, blockY + 4, TILE_SIZE * 2 - 8, TILE_SIZE - 8);
+                        ctx.strokeRect(blockX + 4, blockY + 4, TILE_SIZE * 2 - 8, TILE_SIZE - 8);
+                    } else if (ptype === '3') {
+                        // 1x2 블록 (세로로 누운 상태) - 하나의 긴 사각형
+                        const blockX = px * TILE_SIZE;
+                        const blockY = (py - 1) * TILE_SIZE; // 위쪽 타일부터 시작
+                        ctx.fillRect(blockX + 4, blockY + 4, TILE_SIZE - 8, TILE_SIZE * 2 - 8);
+                        ctx.strokeRect(blockX + 4, blockY + 4, TILE_SIZE - 8, TILE_SIZE * 2 - 8);
+                    }
+                    
+                    // 시작점과 끝점 표시
+                    if (idx === 0) {
+                        // 시작점 표시 (S)
+                        ctx.fillStyle = '#fff';
+                        ctx.font = 'bold 12px Arial';
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText('S', px * TILE_SIZE + TILE_SIZE/2, py * TILE_SIZE + TILE_SIZE/2);
+                    } else if (idx === puzzle.move.length - 1) {
+                        // 끝점 표시 (E)
+                        ctx.fillStyle = '#fff';
+                        ctx.font = 'bold 12px Arial';
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText('E', px * TILE_SIZE + TILE_SIZE/2, py * TILE_SIZE + TILE_SIZE/2);
+                    }
+                });
+                
+                // 이동 경로 선 그리기
+                ctx.strokeStyle = 'rgba(76, 175, 80, 0.5)';
+                ctx.lineWidth = 2;
+                ctx.setLineDash([5, 5]);
+                ctx.beginPath();
+                
+                puzzle.move.forEach((move, idx) => {
+                    const parts = move.split('#');
+                    const px = parseInt(parts[0]);
+                    const py = parseInt(parts[1]);
+                    
+                    if (idx === 0) {
+                        ctx.moveTo(px * TILE_SIZE + TILE_SIZE/2, py * TILE_SIZE + TILE_SIZE/2);
+                    } else {
+                        ctx.lineTo(px * TILE_SIZE + TILE_SIZE/2, py * TILE_SIZE + TILE_SIZE/2);
+                    }
+                });
+                
+                ctx.stroke();
+                ctx.setLineDash([]); // 점선 해제
+            }
+            
+            container.appendChild(info);
+            container.appendChild(canvas);
+            return container;
+        }
+
+        async function displayPuzzles(filename) {
+            hideError();
+            const puzzlesDiv = document.getElementById('puzzles');
+            puzzlesDiv.innerHTML = '<p>Loading...</p>';
+            
+            currentPuzzles = await loadPuzzleFile(filename);
+            
+            if (currentPuzzles.length === 0) {
+                puzzlesDiv.innerHTML = '<p>No puzzles loaded.</p>';
+                return;
+            }
+            
+            puzzlesDiv.innerHTML = '';
+            document.getElementById('puzzleCount').textContent = `(${currentPuzzles.length} puzzles)`;
+            
+            // 최대 100개만 표시 (성능 고려)
+            const displayCount = Math.min(currentPuzzles.length, 100);
+            for (let i = 0; i < displayCount; i++) {
+                const puzzleElement = drawPuzzle(currentPuzzles[i], i);
+                puzzlesDiv.appendChild(puzzleElement);
+            }
+            
+            if (displayCount < currentPuzzles.length) {
+                const notice = document.createElement('p');
+                notice.textContent = `Showing first ${displayCount} of ${currentPuzzles.length} puzzles`;
+                notice.style.textAlign = 'center';
+                notice.style.padding = '20px';
+                puzzlesDiv.appendChild(notice);
+            }
+        }
+
+        // 파일 선택 이벤트
+        document.getElementById('fileSelector').addEventListener('change', (e) => {
+            displayPuzzles(e.target.value);
+        });
+
+        document.getElementById('showCollectables').addEventListener('change', (e) => {
+            showCollectables = e.target.checked;
+            // 현재 표시된 퍼즐들을 다시 그리기
+            if (currentPuzzles.length > 0) {
+                const currentFile = document.getElementById('fileSelector').value;
+                displayPuzzles(currentFile);
+            }
+        });
+
+        // 해답 체크박스 이벤트
+        document.getElementById('showSolution').addEventListener('change', (e) => {
+            showSolution = e.target.checked;
+            // 현재 표시된 퍼즐들을 다시 그리기
+            if (currentPuzzles.length > 0) {
+                const currentFile = document.getElementById('fileSelector').value;
+                displayPuzzles(currentFile);
+            }
+        });
+
+        // 초기 로드
+        window.addEventListener('load', () => {
+            displayPuzzles('puzzle_no_gimmick_all.json');
+        });
+    </script>
+</body>
+</html>

@@ -10,6 +10,7 @@ class Config:
     # Dataset
     game: str = "sokoban"
     source: str = "boxoban"  # choices=["boxoban", "microban"]
+    data_file: typing.Optional[typing.Any] = None
     char_encoding: bool = False
     level_key: str = "level"
     annotation_keys: typing.Optional[typing.List[str]] = None

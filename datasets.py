@@ -17,6 +17,8 @@ from conf.config import Config
 
 from utils import BOXOBAN_MAPPING, encode_boxoban_text, decode_boxoban_text
 from sokoban_solvers import EnhancedAStarAgent, State
+from card3d_dataset import Card3DDataset
+from bloxorz_dataset import BloxorzDataset
 
 VALID_DATA_SOURCES = ["boxoban", "boxoban-chars", "boxoban-text", "microban"]
 
@@ -166,16 +168,16 @@ class AnnotatedSokobanDataset(GameDataset):
         self.level_hashes = set(self.train_dataframe["level_hash"].values)
 
         full_cache_dir = os.path.join(cache_dir,
-                                      f"source:{source}" + ("char-encoded" if cfg.char_encoding else ""),
-                                      f"model:{model_name}",
-                                      f"level_key:{level_key}",
-                                      f"annotation_keys:{annotation_keys}",
-                                      f"num_annotation_buckets:{num_annotation_buckets}",
-                                      f"holdouts:{holdout_solution_lens}",
-                                      f"split:{split}",
-                                      f"chunk_size:{chunk_size}",
-                                      f"sample_prop:{sample_prop}",
-                                      f"seed:{seed}")
+                              f"source_{source}" + ("_char-encoded" if cfg.char_encoding else ""),
+                              f"model_{model_name}",
+                              f"level_key_{level_key}",
+                              f"annotation_keys_{annotation_keys}",
+                              f"num_annotation_buckets_{num_annotation_buckets}",
+                              f"holdouts_{holdout_solution_lens}",
+                              f"split_{split}",
+                              f"chunk_size_{chunk_size}",
+                              f"sample_prop_{sample_prop}",
+                              f"seed_{seed}")
 
         # Create output directory if it doesn't exist
         if not os.path.exists(full_cache_dir):

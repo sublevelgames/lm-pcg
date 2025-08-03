@@ -41,17 +41,31 @@ def get_run_name(args: Config):
     # which hyperparameters are swept over in the experiment a create a new log folder that references them
     # specifically.
     if args.exp_name != "":
-        train_yaml = yaml.load(open(f"conf/experiment/{args.exp_name}.yaml"), Loader=yaml.FullLoader)
-        train_sweep_params = sort_hyperparams(train_yaml['hydra']['sweeper']['params'].keys())
-
-        # Get the values of the hyperparameters that are swept over in the experiment
-        sweep_values = [args[param] for param in train_sweep_params]
-
-        # Create a unique name for the run based on the hyperparameter values
-        run_name = os.path.join(
-            args.exp_name,
-            "_".join([f"{param}-{value}" for param, value in zip(train_sweep_params, sweep_values)])
-        )
+        yaml_path = f"conf/experiment/{args.exp_name}.yaml"
+        
+        # yaml 파일이 있는 경우
+        if os.path.exists(yaml_path):
+            train_yaml = yaml.load(open(yaml_path), Loader=yaml.FullLoader)
+            train_sweep_params = sort_hyperparams(train_yaml['hydra']['sweeper']['params'].keys())
+            sweep_values = [args[param] for param in train_sweep_params]
+            run_name = os.path.join(
+                args.exp_name,
+                "_".join([f"{param}-{value}" for param, value in zip(train_sweep_params, sweep_values)])
+            )
+        # yaml 파일이 없는 경우 - exp_name을 폴더명으로 사용
+        else:
+            # Case 2와 동일한 로직 사용하되, "manual" 대신 exp_name 사용
+            default_config = Config()
+            changed_params = sort_hyperparams([param for param in args.keys() if args[param] != default_config.__dict__.get(param)])
+            changed_params = [param for param in changed_params if param not in NON_NAMED_HYPERPARAMS]
+            
+            if changed_params == []:
+                run_name = os.path.join(args.exp_name, "default")
+            else:
+                run_name = os.path.join(
+                    args.exp_name,
+                    "_".join([f"{param}-{args[param]}" for param in changed_params])
+                )
 
     # Case 2: we're training a model using a specific set of hyperparameters. In this case, we want to
     # create a new log folder that references any hyperparameter that is different from the default
@@ -119,64 +133,93 @@ def process_hyperparam_str(hp_str: str) -> tuple:
 
 
 def save_train_state(model, optimizer, global_step, output_dir):
-    # Get paths of any previous checkpoints
-    prior_checkpoint_paths = [os.path.join(output_dir, f) for f in os.listdir(output_dir) if f.startswith("checkpoint-")]
+    """모델과 optimizer 상태를 저장"""
+    checkpoint_dir = os.path.join(output_dir, f"checkpoint-{global_step}")
+    os.makedirs(checkpoint_dir, exist_ok=True)
+    
+    # 모델을 safetensors로 저장
+    if hasattr(model, 'module'):
+        model.module.save_pretrained(checkpoint_dir)
+    else:
+        model.save_pretrained(checkpoint_dir)
+    
+    # optimizer와 global_step은 별도 JSON으로 저장
+    import json
+    training_state = {
+        'global_step': global_step,
+        # optimizer state_dict는 너무 크므로 저장하지 않음
+        # 재시작 시 learning rate scheduler만 맞춰주면 됨
+    }
+    
+    with open(os.path.join(checkpoint_dir, "training_state.json"), "w") as f:
+        json.dump(training_state, f)
+    
+    print(f"✓ Checkpoint saved at step {global_step}")
 
-    # Save current checkpoint
-    output_dir = os.path.join(output_dir, "checkpoint-{}".format(global_step))
-    model.save_pretrained(output_dir)
-    torch.save(optimizer.state_dict(), os.path.join(output_dir, "optimizer.pt"))
-
-    with open(os.path.join(output_dir, "global_step.txt"), "w") as f:
-        f.write(str(global_step))
-
-    # Delete prior checkpoints (and avoid deleting the current checkpoint)
-    [shutil.rmtree(path) for path in prior_checkpoint_paths if path != output_dir]
 
 def load_train_state(output_dir, lora=False):
-    '''
-    Attempt to load the model from the most recent checkpoint in the output directory, raising an
-    error if no checkpoints exist or if there are errors loading them. The 'lora' flag indicates
-    whether to use the PEFT model
-    '''
+    """체크포인트에서 모델과 training state 로드"""
+    from transformers import AutoModelForCausalLM
+    from peft import PeftModel
+    import json
+
+    print(f"Looking for checkpoints in: {output_dir}")
     
-
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-    # Set output dir to most recent checkpoint
-    prior_checkpoint_paths = [os.path.join(output_dir, f) for f in os.listdir(output_dir) if f.startswith("checkpoint-")]
-    prior_checkpoint_paths = sorted(prior_checkpoint_paths, key=lambda x: int(x.split("-")[-1]))
+    # 디렉토리 내용 확인
+    if os.path.exists(output_dir):
+        print(f"Directory contents: {os.listdir(output_dir)}")
+    else:
+        print(f"Directory does not exist: {output_dir}")
+        raise CheckpointNotFoundError(f"Directory not found: {output_dir}")
     
-    if len(prior_checkpoint_paths) == 0:
-        raise CheckpointNotFoundError(f"No checkpoints found at {output_dir}.")
-
-
-    # Attempt to load most recent checkpoints, settling for earlier ones if we encounter errors.
-    while len(prior_checkpoint_paths) > 0:
-        ckpt_dir = prior_checkpoint_paths.pop(-1)
-        print("Attempting to load checkpoint from {}...".format(ckpt_dir))
-
-        try:
-            # Load the model, pre-intializing the config if we're using the PEFT model
-            if lora == True:
-                config = PeftConfig.from_pretrained(ckpt_dir)
-                model = AutoModelForCausalLM.from_pretrained(config.base_model_name_or_path)
-                model = PeftModelForCausalLM.from_pretrained(model, ckpt_dir)
-            else:
-                model = AutoModelForCausalLM.from_pretrained(ckpt_dir)
-
-            optimizer_state_dict = torch.load(os.path.join(ckpt_dir, "optimizer.pt"), map_location=device)
-            with open(os.path.join(ckpt_dir, "global_step.txt"), "r") as f:
-                global_step = int(f.read())
+    # 가장 최근 체크포인트 찾기
+    checkpoint_dirs = []
+    for item in os.listdir(output_dir):
+        if item.startswith("checkpoint-"):
+            try:
+                step = int(item.split("-")[1])
+                checkpoint_dirs.append((step, item))
+                print(f"Found checkpoint: {item} (step {step})")
+            except:
+                continue
+    
+    if not checkpoint_dirs:
+        raise CheckpointNotFoundError(f"No checkpoints found in {output_dir}")
+    
+    # 가장 큰 step의 체크포인트 선택
+    checkpoint_dirs.sort(key=lambda x: x[0], reverse=True)
+    latest_step, latest_checkpoint = checkpoint_dirs[0]
+    checkpoint_path = os.path.join(output_dir, latest_checkpoint)
+    
+    print(f"Attempting to load checkpoint from {checkpoint_path}...")
+    
+    # 모델 로드 (safetensors 자동 사용)
+    try:
+        if lora:
+            # LoRA 모델 로드
+            from transformers import AutoConfig
+            config = AutoConfig.from_pretrained(checkpoint_path)
+            base_model_name = config._name_or_path
             
-        except Exception as e:
-            print(f"Error loading checkpoint from {ckpt_dir}: {e}")
-            if len(prior_checkpoint_paths) == 0:
-                raise CheckpointNotFoundError(f"Could not load any of the checkpoints found at {ckpt_dir}.")
-            else:
-                print(f"Attempting to load earlier checkpoint...")
-
-    return model, optimizer_state_dict, global_step
+            # 베이스 모델 먼저 로드
+            base_model = AutoModelForCausalLM.from_pretrained(base_model_name)
+            # LoRA 어댑터 로드
+            model = PeftModel.from_pretrained(base_model, checkpoint_path)
+        else:
+            model = AutoModelForCausalLM.from_pretrained(checkpoint_path)
+    except Exception as e:
+        raise CheckpointNotFoundError(f"Could not load model from checkpoint: {e}")
+    
+    # training state 로드
+    try:
+        with open(os.path.join(checkpoint_path, "training_state.json"), "r") as f:
+            training_state = json.load(f)
+        global_step = training_state['global_step']
+    except:
+        global_step = latest_step  # 파일명에서 추출
+    
+    # optimizer state는 None 반환 (새로 초기화)
+    return model, None, global_step
 
 BOXOBAN_MAPPING = {
     '-': 'empty',
@@ -185,7 +228,8 @@ BOXOBAN_MAPPING = {
     '.': 'goal',
     '*': 'box_in_place',
     '@': 'player',
-    '+': 'player_in_place'
+    '+': 'player_in_place',
+    ' ': 'empty'
 }
 
 BOXOBAN_INVERSE_MAPPING = {v: k for k, v in BOXOBAN_MAPPING.items()}

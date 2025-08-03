@@ -3,7 +3,7 @@ import json
 import os
 import shutil
 
-from griddly import GymWrapperFactory
+# from griddly import GymWrapperFactory
 import gym
 import hydra
 from Levenshtein import distance
@@ -18,7 +18,8 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from conf.config import Config, EvalConfig
 from datasets import GameDataset, AnnotatedSokobanDataset
 from utils import BOXOBAN_TO_GRIDDLY_CHARS, GRIDDLY_ACTION_MAPPING, get_run_name, load_train_state, save_gif
-
+from card3d_dataset import Card3DDataset
+from bloxorz_dataset import BloxorzDataset
 
 def evaluate(model: AutoModelForCausalLM, device, tokenizer: AutoTokenizer, dataset: GameDataset, cfg: EvalConfig, 
              num_steps_trained: int, verbose=False, render_dir=None, num_proc=1):
@@ -44,7 +45,7 @@ def evaluate(model: AutoModelForCausalLM, device, tokenizer: AutoTokenizer, data
 
         else:
             contexts = tokenizer.encode(tokenizer.bos_token + dataset.gen_context(), return_tensors="pt").to(device)
-            return_sequences = cfg.num_eval_samples
+            return_sequences = min(cfg.num_eval_samples, cfg.gen_beams)
         
         if cfg.sample_sequential and not cfg.sample_contexts:
             samples = [model.generate(
@@ -82,7 +83,7 @@ def evaluate(model: AutoModelForCausalLM, device, tokenizer: AutoTokenizer, data
     if cfg.num_eval_proc == 1:
         if verbose: print("Computing solutions...")
         solutions = [dataset.get_solution(sample, verbose=False, n_search_iters=cfg.n_search_iters) for sample in samples]
-        novelties, nearest_lvls, nearest_lvl_sols = zip(*[dataset.is_novel(sample) for sample in samples])
+        novelties, nearest_lvls, nearest_lvl_sols, _ = zip(*[dataset.is_novel(sample) for sample in samples])
         accuracies, infos = zip(*[dataset.is_accurate(sample, solution, cfg.eval_tolerance) for sample, solution in zip(samples, solutions)])
     
     else:
@@ -96,8 +97,18 @@ def evaluate(model: AutoModelForCausalLM, device, tokenizer: AutoTokenizer, data
     
     
     # Convert solutions to strings using the griddly action mapping
-    solutions = ["" if sol is False else "".join([str(GRIDDLY_ACTION_MAPPING[(step['x'], step['y'])]) for step in sol]) for sol in solutions]
-    nearest_lvl_sols = ["" if sol is False else "".join([str(GRIDDLY_ACTION_MAPPING[(step['x'], step['y'])]) for step in sol]) for sol in nearest_lvl_sols]
+    if cfg.game == "sokoban":
+        # Convert solutions to strings using the griddly action mapping
+        solutions = ["" if sol is False else "".join([str(GRIDDLY_ACTION_MAPPING[(step['x'], step['y'])]) for step in sol]) for sol in solutions]
+        nearest_lvl_sols = ["" if sol is False else "".join([str(GRIDDLY_ACTION_MAPPING[(step['x'], step['y'])]) for step in sol]) for sol in nearest_lvl_sols]
+    elif cfg.game == "fruit_match":
+        # For fruit_match, solutions are just True/False
+        solutions = [str(sol) for sol in solutions]
+        nearest_lvl_sols = [str(sol) for sol in nearest_lvl_sols]
+    else:
+        # Default handling
+        solutions = [str(sol) for sol in solutions]
+        nearest_lvl_sols = [str(sol) for sol in nearest_lvl_sols]
 
     num_accurate = sum(accuracies)
     num_playable = sum([len(sol) > 0 for sol in solutions])
@@ -392,6 +403,22 @@ def main(args: Config):
                                           chunk_size=args.chunk_size,
                                           seed=args.seed,
                                           cfg=args)
+    elif args.game == "fruit_match":
+        dataset = Card3DDataset(
+            tokenizer,
+            args.model,
+            data_file=args.get('data_file', 'data/fruit-match/data.json'),
+            chunk_size=args.chunk_size,
+            cfg=args
+        )
+    elif args.game == "bloxorz":
+        dataset = BloxorzDataset(
+            tokenizer,
+            args.model,
+            data_file=args.get('data_file', 'data/bloxorz/puzzle3_gimmick.json'),
+            chunk_size=args.chunk_size,
+            cfg=args
+        )
 
     else:
         raise NotImplementedError

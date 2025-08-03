@@ -18,6 +18,8 @@ from peft import get_peft_config, get_peft_model, LoraConfig, TaskType
 from datasets import GameDataset, AnnotatedSokobanDataset, LMazeLMDataset
 from evaluate import evaluate
 from utils import CheckpointNotFoundError, get_run_name, save_train_state, load_train_state
+from card3d_dataset import Card3DDataset
+from bloxorz_dataset import BloxorzDataset
 
 def train_loop(model, tokenizer, optimizer, data_loader, output_dir, global_step, args: Config):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -112,16 +114,31 @@ def train_loop(model, tokenizer, optimizer, data_loader, output_dir, global_step
                     )[0]
 
                     sample = dataset.decode(outputs)
+                    
+                    # Tensorboard에 간단한 버전
                     if not args.no_log: 
-                        log_writer.add_text("eval/random_sample", f"```\n{sample.replace('-', ' ')}\n```", global_step)
+                        log_writer.add_text("eval/random_sample", f"```\n{sample}\n```", global_step)
 
+                    # 콘솔에 상세한 출력
+                    if hasattr(dataset, 'print_sample'):
+                        print(f"\n🎯 GENERATED SAMPLE AT STEP {global_step}:")
+                        dataset.print_sample(sample)
+                    else:
+                        print(f"\nSample:\n{sample}\n")
+
+                    # 검증 결과
                     solution = dataset.get_solution(sample)
                     accurate, info = dataset.is_accurate(sample, solution)
+                    novel = dataset.is_novel(sample)
 
-                    print(f"\nSample:\n{sample.replace('-', ' ')}\n")
-                    print(f"Novel: {dataset.is_novel(sample)[0]}")    
-                    print(f"Playable: {solution != False}")
-                    print(f"Accurate: {accurate}")
+                    print(f"\n📊 VALIDATION RESULTS:")
+                    print(f"  Novel: {novel}")    
+                    print(f"  Valid: {solution}")
+                    print(f"  Accurate: {accurate}")
+                    if info:
+                        for key, value in info.items():
+                            print(f"  {key}: {value}")
+                    print("-" * 50)
 
                 if global_step%args.save_freq == 0 and not args.no_log:
                     save_train_state(model, optimizer, global_step, output_dir)
@@ -178,7 +195,10 @@ def main(args: Config):
                      "codeparrot": "lvwerra/codeparrot",
                      "java-gpt2": "microsoft/CodeGPT-small-java-adaptedGPT2",
                      "incoder-1B": "facebook/incoder-1B",
-                     "incoder-6B": "facebook/incoder-6B"}
+                     "incoder-6B": "facebook/incoder-6B",
+                     "phi-2": "microsoft/phi-2",
+                     "starcoder-3b": "bigcode/starcoderbase-3b",
+                     "starcoder-1b": "bigcode/starcoderbase-1b"}
 
     # Set parallelism to false to silence deadlock warnings
     os.environ["TOKENIZERS_PARALLELISM"] = "false"
@@ -229,7 +249,8 @@ def main(args: Config):
     else:
         tokenizer = AutoTokenizer.from_pretrained(model_name)
         tokenizer.add_special_tokens({"pad_token": "PAD",
-                                    "bos_token": "START"})
+                                    "bos_token": "START",
+                                    "eos_token": "END"})
 
     # Instantiate the dataset
     if args.game == "sokoban":
@@ -251,6 +272,33 @@ def main(args: Config):
         dataset = LMazeLMDataset(tokenizer,
                                  args.model,
                                  chunk_size=args.chunk_size)
+    elif args.game == "fruit_match":
+        dataset = Card3DDataset(
+            tokenizer,
+            args.model,
+            data_file=args.get('data_file', 'data/fruit-match/data.json'),
+            chunk_size=args.chunk_size,
+            cfg=args
+        )
+    elif args.game == "bloxorz":
+        # data_file이 지정되지 않으면 기본값 사용
+        if args.data_file is None:
+            # data_files = ['data/bloxorz/puzzle_no_gimmick_all.json', 'data/bloxorz/puzzle_glass_all.json', 'data/bloxorz/puzzle_switch_all.json', 'data/bloxorz/puzzle_bridge_all.json']  # 기본 파일
+            data_files = ['data/bloxorz/puzzle_bridge_all.json']  # bridge만
+            # data_files = ['data/bloxorz/puzzle_switch_all.json']  # switch만
+            # data_files = ['data/bloxorz/puzzle_glass_all.json']  # glass만
+        elif isinstance(args.data_file, str):
+            data_files = [args.data_file]
+        else:
+            data_files = args.data_file
+            
+        dataset = BloxorzDataset(
+            tokenizer,
+            args.model,
+            data_file=data_files,
+            chunk_size=args.chunk_size,
+            cfg=args
+        )
 
     else:
         raise NotImplementedError
@@ -262,7 +310,12 @@ def main(args: Config):
         model.resize_token_embeddings(len(tokenizer))
 
     else:
-        model = AutoModelForCausalLM.from_pretrained(model_name)
+        try:
+            model = AutoModelForCausalLM.from_pretrained(model_name, use_safetensors=True)
+            print(f"Loaded {model_name} with safetensors")
+        except:
+            print(f"Safetensors failed, trying regular loading for {model_name}")
+            model = AutoModelForCausalLM.from_pretrained(model_name)
         model.resize_token_embeddings(len(tokenizer))
 
     # If specified, use Low-Rank Adaptation
@@ -279,7 +332,9 @@ def main(args: Config):
     # Create/load/overwrite the output directory if logging.
     output_dir = None
     if not args.no_log:
-        output_dir = f"./logs/{run_name}"
+        run_name = get_run_name(args)
+        output_dir = os.path.join(".", "logs", run_name)  # os.path.join 사용
+        output_dir = os.path.normpath(output_dir)  # 경로 정규화
 
         # Overwrite output directory, or load train state if checkpoint exists
         if args.overwrite:
@@ -287,10 +342,9 @@ def main(args: Config):
         
         elif os.path.exists(output_dir):
             try:
-                model, optimizer_state_dict, global_step = load_train_state(output_dir, lora=args.lora)
-                optimizer.load_state_dict(optimizer_state_dict)
-                print(f"Success! Resmuing training from step {global_step}...")
-
+                model, _, global_step = load_train_state(output_dir, lora=args.lora)
+                # optimizer는 새로 초기화되므로 state_dict 로드 불필요
+                print(f"Success! Resuming training from step {global_step}...")
             except CheckpointNotFoundError as e:
                 global_step = 0
                 print(f"Failed to load checkpoint from {output_dir}, with error: {e}. Removing directory and starting from scratch.")

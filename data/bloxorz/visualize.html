@@ -67,6 +67,14 @@
             <option value="puzzle_switch_all.json">Switch</option>
         </select>
         <span id="puzzleCount"></span>
+        
+        <label style="margin-left: 20px;">Sort by:</label>
+        <select id="sortSelector" class="file-selector">
+            <option value="none">None</option>
+            <option value="moves">Solution Length</option>
+            <option value="switches">Switch Count</option>
+        </select>
+        
         <label style="margin-left: 20px;">
             <input type="checkbox" id="showCollectables"> Show Collectables
         </label>
@@ -109,6 +117,40 @@
         let showCollectables = false;
         let showSolution = true;
 
+        function sortPuzzles(puzzles, sortType) {
+            const sortedPuzzles = [...puzzles]; // 복사본 생성
+            
+            // console.log('Sorting by:', sortType); // 디버그용
+            
+            switch(sortType) {
+                case 'moves':
+                    sortedPuzzles.sort((a, b) => {
+                        // console.log(`Comparing: ${a.move.length} vs ${b.move.length}`); // 디버그용
+                        return b.move.length - a.move.length;
+                    });
+                    break;
+                case 'switches':
+                    sortedPuzzles.sort((a, b) => {
+                        const switchCountA = a.switch ? a.switch.split('|').length : 0;
+                        const switchCountB = b.switch ? b.switch.split('|').length : 0;
+                        // console.log(`Comparing switches: ${switchCountA} vs ${switchCountB}`); // 디버그용
+                        return switchCountB - switchCountA;
+                    });
+                    break;
+                default:
+                    // console.log('No sorting applied'); // 디버그용
+                    break;
+            }
+            
+            // 정렬 결과 확인
+            // console.log('First 5 puzzles after sorting:', sortedPuzzles.slice(0, 5).map(p => ({
+            //     moves: p.move.length,
+            //     switches: p.switch ? p.switch.split('|').length : 0
+            // })));
+            
+            return sortedPuzzles;
+        }
+
         async function loadPuzzleFile(filename) {
             try {
                 const response = await fetch(filename);
@@ -137,10 +179,11 @@
             const container = document.createElement('div');
             container.className = 'puzzle-container';
             
-            // 정보 표시 부분을 찾아서 다음과 같이 수정
+            // drawPuzzle 함수 내 info 부분 수정
             const info = document.createElement('div');
             info.className = 'puzzle-info';
             let gimmickText = puzzle.gimmick ? puzzle.gimmick.join(', ') : 'none';
+            let switchCount = puzzle.switch ? puzzle.switch.split('|').length : 0;
 
             // move 배열을 파싱하여 표시
             let moveText = '';
@@ -158,7 +201,7 @@
                 <strong>Puzzle ${index + 1}</strong> | 
                 Size: ${puzzle.grid_w}x${puzzle.grid_h} | 
                 Gimmicks: ${gimmickText} | 
-                Moves: ${puzzle.move.length}<br>
+                Moves: ${puzzle.move.length}${switchCount > 0 ? ` | Switches: ${switchCount}` : ''}<br>
                 <small style="color: #666;">Path: ${moveText}</small>
             `;
             
@@ -322,26 +365,42 @@
             const puzzlesDiv = document.getElementById('puzzles');
             puzzlesDiv.innerHTML = '<p>Loading...</p>';
             
-            currentPuzzles = await loadPuzzleFile(filename);
+            // 파일명이 바뀌었을 때만 새로 로드
+            if (!filename && currentPuzzles.length > 0) {
+                // 파일명이 없으면 현재 퍼즐로 다시 표시 (정렬만 변경)
+                renderPuzzles(currentPuzzles);
+            } else {
+                // 새로운 파일 로드
+                currentPuzzles = await loadPuzzleFile(filename);
+                renderPuzzles(currentPuzzles);
+            }
+        }
+
+        function renderPuzzles(puzzles) {
+            const puzzlesDiv = document.getElementById('puzzles');
             
-            if (currentPuzzles.length === 0) {
+            if (puzzles.length === 0) {
                 puzzlesDiv.innerHTML = '<p>No puzzles loaded.</p>';
                 return;
             }
             
+            // 정렬 적용
+            const sortType = document.getElementById('sortSelector').value;
+            const sortedPuzzles = sortPuzzles(puzzles, sortType);
+            
             puzzlesDiv.innerHTML = '';
-            document.getElementById('puzzleCount').textContent = `(${currentPuzzles.length} puzzles)`;
+            document.getElementById('puzzleCount').textContent = `(${sortedPuzzles.length} puzzles)`;
             
             // 최대 100개만 표시 (성능 고려)
-            const displayCount = Math.min(currentPuzzles.length, 100);
+            const displayCount = Math.min(sortedPuzzles.length, 100);
             for (let i = 0; i < displayCount; i++) {
-                const puzzleElement = drawPuzzle(currentPuzzles[i], i);
+                const puzzleElement = drawPuzzle(sortedPuzzles[i], i);
                 puzzlesDiv.appendChild(puzzleElement);
             }
             
-            if (displayCount < currentPuzzles.length) {
+            if (displayCount < sortedPuzzles.length) {
                 const notice = document.createElement('p');
-                notice.textContent = `Showing first ${displayCount} of ${currentPuzzles.length} puzzles`;
+                notice.textContent = `Showing first ${displayCount} of ${sortedPuzzles.length} puzzles`;
                 notice.style.textAlign = 'center';
                 notice.style.padding = '20px';
                 puzzlesDiv.appendChild(notice);
@@ -353,22 +412,26 @@
             displayPuzzles(e.target.value);
         });
 
+        // 정렬 선택 이벤트
+        document.getElementById('sortSelector').addEventListener('change', (e) => {
+            if (currentPuzzles.length > 0) {
+                renderPuzzles(currentPuzzles);
+            }
+        });
+
+        // 체크박스 이벤트
         document.getElementById('showCollectables').addEventListener('change', (e) => {
             showCollectables = e.target.checked;
-            // 현재 표시된 퍼즐들을 다시 그리기
             if (currentPuzzles.length > 0) {
-                const currentFile = document.getElementById('fileSelector').value;
-                displayPuzzles(currentFile);
+                renderPuzzles(currentPuzzles);
             }
         });
 
         // 해답 체크박스 이벤트
         document.getElementById('showSolution').addEventListener('change', (e) => {
             showSolution = e.target.checked;
-            // 현재 표시된 퍼즐들을 다시 그리기
             if (currentPuzzles.length > 0) {
-                const currentFile = document.getElementById('fileSelector').value;
-                displayPuzzles(currentFile);
+                renderPuzzles(currentPuzzles);
             }
         });
 

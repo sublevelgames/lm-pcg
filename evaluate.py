@@ -18,7 +18,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from conf.config import Config, EvalConfig
 from datasets import GameDataset, AnnotatedSokobanDataset
 from utils import BOXOBAN_TO_GRIDDLY_CHARS, GRIDDLY_ACTION_MAPPING, get_run_name, load_train_state, save_gif
-from card3d_dataset import Card3DDataset
+# from card3d_dataset import Card3DDataset
 from bloxorz_dataset import BloxorzDataset
 
 def evaluate(model: AutoModelForCausalLM, device, tokenizer: AutoTokenizer, dataset: GameDataset, cfg: EvalConfig, 
@@ -412,10 +412,33 @@ def main(args: Config):
             cfg=args
         )
     elif args.game == "bloxorz":
+        # exp_name에 따라 데이터 파일 선택 (train_lm.py와 동일한 로직)
+        if args.data_file is None:
+            if 'no_gimmick' in args.exp_name:
+                data_files = ['data/bloxorz/puzzle_no_gimmick_all.json']
+            elif 'glass' in args.exp_name:
+                data_files = ['data/bloxorz/puzzle_glass_all.json']
+            elif 'switch' in args.exp_name:
+                data_files = ['data/bloxorz/puzzle_switch_all.json']
+            elif 'bridge' in args.exp_name:
+                data_files = ['data/bloxorz/puzzle_bridge_all.json']
+            else:
+                # 기본값: 모든 파일 사용
+                data_files = [
+                    'data/bloxorz/puzzle_no_gimmick_all.json',
+                    'data/bloxorz/puzzle_glass_all.json',
+                    'data/bloxorz/puzzle_switch_all.json',
+                    'data/bloxorz/puzzle_bridge_all.json'
+                ]
+        elif isinstance(args.data_file, str):
+            data_files = [args.data_file]
+        else:
+            data_files = args.data_file
+            
         dataset = BloxorzDataset(
             tokenizer,
             args.model,
-            data_file=args.get('data_file', 'data/bloxorz/puzzle3_gimmick.json'),
+            data_file=data_files,
             chunk_size=args.chunk_size,
             cfg=args
         )

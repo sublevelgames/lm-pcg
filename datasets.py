@@ -17,7 +17,7 @@ from conf.config import Config
 
 from utils import BOXOBAN_MAPPING, encode_boxoban_text, decode_boxoban_text
 from sokoban_solvers import EnhancedAStarAgent, State
-from card3d_dataset import Card3DDataset
+# from card3d_dataset import Card3DDataset
 from bloxorz_dataset import BloxorzDataset
 
 VALID_DATA_SOURCES = ["boxoban", "boxoban-chars", "boxoban-text", "microban"]

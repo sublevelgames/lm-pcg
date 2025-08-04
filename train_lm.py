@@ -179,6 +179,11 @@ def train_loop(model, tokenizer, optimizer, data_loader, output_dir, global_step
 
 @hydra.main(version_base="1.2.0", config_path="conf", config_name="config")
 def main(args: Config):
+    print("=== DEBUG: main function started ===")
+    print(f"args.game: {args.game}")
+    print(f"args.exp_name: {args.exp_name}")
+    print(f"args.data_file: {args.data_file}")
+    print("===================================")
 
     # Set the seed
     set_seed(args.seed)
@@ -281,12 +286,27 @@ def main(args: Config):
             cfg=args
         )
     elif args.game == "bloxorz":
-        # data_file이 지정되지 않으면 기본값 사용
+        # 디버깅 출력 추가
+        print(f"DEBUG: exp_name = {args.exp_name}")
+        print(f"DEBUG: data_file = {args.data_file}")
+        # exp_name에 따라 데이터 파일 선택
         if args.data_file is None:
-            # data_files = ['data/bloxorz/puzzle_no_gimmick_all.json', 'data/bloxorz/puzzle_glass_all.json', 'data/bloxorz/puzzle_switch_all.json', 'data/bloxorz/puzzle_bridge_all.json']  # 기본 파일
-            data_files = ['data/bloxorz/puzzle_bridge_all.json']  # bridge만
-            # data_files = ['data/bloxorz/puzzle_switch_all.json']  # switch만
-            # data_files = ['data/bloxorz/puzzle_glass_all.json']  # glass만
+            if 'no_gimmick' in args.exp_name:
+                data_files = ['data/bloxorz/puzzle_no_gimmick_all.json']
+            elif 'glass' in args.exp_name:
+                data_files = ['data/bloxorz/puzzle_glass_all.json']
+            elif 'switch' in args.exp_name:
+                data_files = ['data/bloxorz/puzzle_switch_all.json']
+            elif 'bridge' in args.exp_name:
+                data_files = ['data/bloxorz/puzzle_bridge_all.json']
+            else:
+                # 기본값: 모든 파일 사용
+                data_files = [
+                    'data/bloxorz/puzzle_no_gimmick_all.json',
+                    'data/bloxorz/puzzle_glass_all.json',
+                    'data/bloxorz/puzzle_switch_all.json',
+                    'data/bloxorz/puzzle_bridge_all.json'
+                ]
         elif isinstance(args.data_file, str):
             data_files = [args.data_file]
         else:

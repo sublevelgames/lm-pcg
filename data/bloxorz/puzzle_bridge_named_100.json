@@ -1,0 +1,2140 @@
+[
+  {
+    "grid": "__..__..__..hHHg._....__..._.....__._1_...__.",
+    "grid_w": 9,
+    "grid_h": 5,
+    "move": [
+      "1#4#1",
+      "1#3#3##{}",
+      "2#3#3##{}",
+      "3#3#3##{}",
+      "3#1#1##{\"0\":true}",
+      "4#1#2##{\"0\":true}"
+    ],
+    "leaf_count": 18,
+    "collectables": "21",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "12#13#14",
+    "name": "Bridge Hoppers",
+    "tip": "Time your rolls on the bridges to avoid falling into the voids."
+  },
+  {
+    "grid": "....h..1_..._H____._._H_.._.g......_......_.___......_",
+    "grid_w": 9,
+    "grid_h": 6,
+    "move": [
+      "7#0#1",
+      "5#0#2##{}",
+      "4#0#1##{\"0\":true}",
+      "4#2#3##{\"0\":true}",
+      "4#3#1##{\"0\":true}",
+      "2#3#2##{\"0\":true}"
+    ],
+    "leaf_count": 16,
+    "collectables": "29#48#34",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "4#13#22",
+    "name": "Glass Gambit",
+    "tip": "Carefully navigate the fragile glass bridges without triggering their collapse."
+  },
+  {
+    "grid": "1._...._......._.__.....hHH...g..___....",
+    "grid_w": 8,
+    "grid_h": 5,
+    "move": [
+      "0#0#1",
+      "0#2#3##{}",
+      "0#3#1##{\"0\":true}",
+      "1#3#2##{\"0\":true}",
+      "3#3#1##{\"0\":true}",
+      "4#3#2##{\"0\":true}"
+    ],
+    "leaf_count": 12,
+    "collectables": "12#16",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "24#25#26",
+    "name": "Blocky Bridge",
+    "tip": "Carefully time your rolls on the bridges to avoid falling into the voids."
+  },
+  {
+    "grid": ".___....1....._....__h..__H__._H_._.g.__...__",
+    "grid_w": 5,
+    "grid_h": 9,
+    "move": [
+      "3#1#1",
+      "3#3#3##{}",
+      "2#3#3##{}",
+      "1#3#3##{}",
+      "1#4#1##{\"0\":true}",
+      "1#6#3##{\"0\":true}"
+    ],
+    "leaf_count": 32,
+    "collectables": "13#16",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "21#26#31",
+    "name": "Glass Hoppers' Odyssey",
+    "tip": "Time your rolls carefully on glass tiles to avoid breaking them and reach the goal."
+  },
+  {
+    "grid": "..........._.g._._H____H_.__h__...._.....1_._",
+    "grid_w": 5,
+    "grid_h": 9,
+    "move": [
+      "1#8#1",
+      "1#7#3##{}",
+      "2#7#3##{}",
+      "3#7#3##{}",
+      "3#5#1##{\"0\":true}",
+      "3#4#3##{\"0\":true}"
+    ],
+    "leaf_count": 10,
+    "collectables": "39#43",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "28#23#18",
+    "name": "Glass Hopper's Gauntlet",
+    "tip": "Strategically time your jumps to clear glass tiles without breaking them. The bridge near the goal may help you avoid some of them."
+  },
+  {
+    "grid": "_1.._...._........h_.._H__._H_...g......",
+    "grid_w": 5,
+    "grid_h": 8,
+    "move": [
+      "1#0#1",
+      "1#2#3##{}",
+      "2#2#3##{}",
+      "3#2#3##{}",
+      "3#3#1##{\"0\":true}",
+      "3#5#3##{\"0\":true}"
+    ],
+    "leaf_count": 37,
+    "collectables": "10#26",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "18#23#28",
+    "name": "Glass Glide Gauntlet",
+    "tip": "Carefully time your rolls across bridges and glass tiles to avoid breaking them and falling into the void."
+  },
+  {
+    "grid": "__..__....__.___.._____.....hHH...g...__.._............1_____.._.____...",
+    "grid_w": 9,
+    "grid_h": 8,
+    "move": [
+      "1#6#1",
+      "1#5#3##{}",
+      "1#3#1##{\"0\":true}",
+      "2#3#2##{\"0\":true}",
+      "4#3#1##{\"0\":true}",
+      "5#3#2##{\"0\":true}"
+    ],
+    "leaf_count": 18,
+    "collectables": "46#40",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "28#29#30",
+    "name": "Glass Glider",
+    "tip": "Use the bridges wisely to roll over the glass tiles and reach the goal efficiently. Careful not to linger too long on the glass or risk breaking it."
+  },
+  {
+    "grid": "____..__.1...........__._...__..___......___.__..._hHHg..____..",
+    "grid_w": 7,
+    "grid_h": 9,
+    "move": [
+      "2#1#1",
+      "2#3#3##{}",
+      "2#4#1##{}",
+      "2#6#3##{}",
+      "2#7#1##{\"0\":true}",
+      "3#7#2##{\"0\":true}"
+    ],
+    "leaf_count": 23,
+    "collectables": "26#8#38",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "51#52#53",
+    "name": "Bridge Bouncer",
+    "tip": "Carefully time your roll across the bridges to avoid falling into the void."
+  },
+  {
+    "grid": "____...1_..._._.....___.....gHHh......____.__",
+    "grid_w": 9,
+    "grid_h": 5,
+    "move": [
+      "7#0#1",
+      "7#2#3##{}",
+      "7#3#1##{}",
+      "5#3#2##{}",
+      "4#3#1##{\"0\":true}",
+      "2#3#2##{\"0\":true}"
+    ],
+    "leaf_count": 24,
+    "collectables": "23",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "31#30#29",
+    "name": "Rolling Bridge Challenge",
+    "tip": "Carefully time your roll across the bridges to avoid falling into the voids."
+  },
+  {
+    "grid": "........g..._H____H___.h.__..._....1....",
+    "grid_w": 5,
+    "grid_h": 8,
+    "move": [
+      "0#7#1",
+      "1#7#2##{}",
+      "3#7#1##{}",
+      "3#6#3##{}",
+      "3#4#1##{\"0\":true}",
+      "3#3#3##{\"0\":true}"
+    ],
+    "leaf_count": 19,
+    "collectables": "24#39",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "23#18#13",
+    "name": "Glass Glide Gauntlet",
+    "tip": "Carefully navigate the glass tiles, as standing on them breaks them and slows down progress. Use the bridges to avoid breaking the glass and reach the goal efficiently."
+  },
+  {
+    "grid": "_..._....1.....__.....h..._H_.._H_...g......._..._",
+    "grid_w": 5,
+    "grid_h": 10,
+    "move": [
+      "4#1#1",
+      "4#3#3##{}",
+      "3#3#3##{}",
+      "2#3#3##{}",
+      "2#4#1##{\"0\":true}",
+      "2#6#3##{\"0\":true}"
+    ],
+    "leaf_count": 46,
+    "collectables": "13",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "22#27#32",
+    "name": "Glass Gambit",
+    "tip": "Carefully navigate the glass tiles and make use of the bridges to avoid falling."
+  },
+  {
+    "grid": "_...._._._...__._._.g....___..._H_.______H_.._.._.h..1",
+    "grid_w": 9,
+    "grid_h": 6,
+    "move": [
+      "8#5#1",
+      "6#5#2##{}",
+      "5#5#1##{\"0\":true}",
+      "5#4#3##{\"0\":true}",
+      "5#2#1##{\"0\":true}",
+      "3#2#2##{\"0\":true}"
+    ],
+    "leaf_count": 11,
+    "collectables": "12#22#21",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "50#41#32",
+    "name": "Glass Gambit",
+    "tip": "Carefully time your rolls on the glass bridges to avoid breaking them and prolong your journey towards the goal."
+  },
+  {
+    "grid": ".._....._._..........g._.._.._....._........_H___._H__1..h........",
+    "grid_w": 6,
+    "grid_h": 11,
+    "move": [
+      "0#9#1",
+      "1#9#2##{}",
+      "3#9#1##{\"0\":true}",
+      "3#8#3##{\"0\":true}",
+      "3#6#1##{\"0\":true}",
+      "3#5#3##{\"0\":true}"
+    ],
+    "leaf_count": 24,
+    "collectables": "63#39#31",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "57#51#45",
+    "name": "Rolling River",
+    "tip": "Use strategic bounces off the glass bridges to build momentum and clear long gaps."
+  },
+  {
+    "grid": "_.....g..._H_.._H_._.h...__.._._..1",
+    "grid_w": 5,
+    "grid_h": 7,
+    "move": [
+      "4#6#1",
+      "2#6#2##{}",
+      "2#5#2##{}",
+      "2#4#2##{}",
+      "1#4#1##{\"0\":true}",
+      "1#3#3##{\"0\":true}"
+    ],
+    "leaf_count": 9,
+    "collectables": "27",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "21#16#11",
+    "name": "Glass Hopper's Gauntlet",
+    "tip": "Use bridges strategically to avoid glass tiles and maintain momentum towards the goal."
+  },
+  {
+    "grid": "..__...____gHHh.._....__..._....._..._.._.._...1..",
+    "grid_w": 10,
+    "grid_h": 5,
+    "move": [
+      "7#4#1",
+      "5#4#2##{}",
+      "4#4#1##{}",
+      "4#3#3##{}",
+      "4#1#1##{\"0\":true}",
+      "2#1#2##{\"0\":true}"
+    ],
+    "leaf_count": 28,
+    "collectables": "4#29",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "14#13#12",
+    "name": "Precarious Pursuit",
+    "tip": "Utilize bridges wisely to avoid voids and reach the goal with minimal visits."
+  },
+  {
+    "grid": "......_...g._............_......._H_..._H__1..h.__..._._...___....",
+    "grid_w": 6,
+    "grid_h": 11,
+    "move": [
+      "1#7#1",
+      "2#7#2##{}",
+      "4#7#1##{\"0\":true}",
+      "4#6#3##{\"0\":true}",
+      "4#4#1##{\"0\":true}",
+      "4#3#3##{\"0\":true}"
+    ],
+    "leaf_count": 52,
+    "collectables": "56",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "46#40#34",
+    "name": "Glass Bridge Maze",
+    "tip": "Carefully time your rolls across the bridge segments to avoid falling into the void."
+  },
+  {
+    "grid": ".__...._._1...._____._..__._....__...___hHHg.____.___..._____._",
+    "grid_w": 9,
+    "grid_h": 7,
+    "move": [
+      "1#1#1",
+      "2#1#2##{}",
+      "4#1#1##{}",
+      "4#3#3##{}",
+      "4#4#1##{\"0\":true}",
+      "5#4#2##{\"0\":true}"
+    ],
+    "leaf_count": 8,
+    "collectables": "11#13#31",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "40#41#42",
+    "name": "Rolling Bridge Maze",
+    "tip": "Carefully time your rolls on the bridges to avoid falling into the void."
+  },
+  {
+    "grid": "___..._......__.g._._H_.._H_.._h..__..._....____1.",
+    "grid_w": 5,
+    "grid_h": 10,
+    "move": [
+      "3#9#1",
+      "3#8#3##{}",
+      "2#8#3##{}",
+      "1#8#3##{}",
+      "1#6#1##{\"0\":true}",
+      "1#5#3##{\"0\":true}"
+    ],
+    "leaf_count": 18,
+    "collectables": "49#32",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "31#26#21",
+    "name": "Rolling Bridge Maze",
+    "tip": "Use the bridges wisely to avoid falling into the void and reach the goal."
+  },
+  {
+    "grid": "....._..g._._H__._H_...h._....1....",
+    "grid_w": 5,
+    "grid_h": 7,
+    "move": [
+      "0#6#1",
+      "1#6#2##{}",
+      "1#5#2##{}",
+      "1#4#2##{}",
+      "3#4#1##{\"0\":true}",
+      "3#3#3##{\"0\":true}"
+    ],
+    "leaf_count": 18,
+    "collectables": "21",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "23#18#13",
+    "name": "Bridge Hopping Bloxorz",
+    "tip": "Time your rolls carefully on the bridges to avoid falling through the glass."
+  },
+  {
+    "grid": "._..._._.g..___....__.._hHH.._.__......___1.._....._._",
+    "grid_w": 6,
+    "grid_h": 9,
+    "move": [
+      "0#7#1",
+      "0#6#3##{}",
+      "0#4#1##{\"0\":true}",
+      "1#4#2##{\"0\":true}",
+      "3#4#1##{\"0\":true}",
+      "3#3#3##{\"0\":true}"
+    ],
+    "leaf_count": 24,
+    "collectables": "15#21",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "24#25#26",
+    "name": "Glass Bridge Balance",
+    "tip": "Carefully time your rolls across the bridge segments to avoid breaking the glass beneath."
+  },
+  {
+    "grid": ".__.._hHHg._.__.._.........___..._._...___1____.._.__.._._..",
+    "grid_w": 6,
+    "grid_h": 10,
+    "move": [
+      "0#7#1",
+      "0#6#3##{}",
+      "0#4#1##{}",
+      "0#3#3##{}",
+      "0#1#1##{\"0\":true}",
+      "1#1#2##{\"0\":true}"
+    ],
+    "leaf_count": 21,
+    "collectables": "32#30",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "6#7#8",
+    "name": "Block's Bridgeway",
+    "tip": "Carefully time your rolls across the bridges to avoid falling into the voids."
+  },
+  {
+    "grid": "_...__....._....._.g..___H_..._H____.h........._.....__...1.......",
+    "grid_w": 6,
+    "grid_h": 11,
+    "move": [
+      "4#9#1",
+      "2#9#2##{}",
+      "1#9#1##{}",
+      "1#8#3##{}",
+      "1#6#1##{\"0\":true}",
+      "1#5#3##{\"0\":true}"
+    ],
+    "leaf_count": 54,
+    "collectables": "51",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "37#31#25",
+    "name": "Block's Descent",
+    "tip": "Use the bridges wisely to avoid falling into the void. The switch near the goal may help maneuver the block into position."
+  },
+  {
+    "grid": "...1..................h______H_.__._H_..__.g...._..._...",
+    "grid_w": 7,
+    "grid_h": 8,
+    "move": [
+      "3#0#1",
+      "3#2#3##{}",
+      "2#2#3##{}",
+      "1#2#3##{}",
+      "1#3#1##{\"0\":true}",
+      "1#5#3##{\"0\":true}"
+    ],
+    "leaf_count": 44,
+    "collectables": "5",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "22#29#36",
+    "name": "Glass Gridle Roll",
+    "tip": "Carefully navigate glass tiles, they break with a single step. Use the bridges to avoid unnecessary risks."
+  },
+  {
+    "grid": "........._.__......_hHH...g....__...............__1__....__...__.___..",
+    "grid_w": 10,
+    "grid_h": 7,
+    "move": [
+      "0#5#1",
+      "0#4#3##{}",
+      "0#2#1##{\"0\":true}",
+      "1#2#2##{\"0\":true}",
+      "3#2#1##{\"0\":true}",
+      "4#2#2##{\"0\":true}"
+    ],
+    "leaf_count": 15,
+    "collectables": "44#15",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "20#21#22",
+    "name": "Bridge Hopper",
+    "tip": "Time your rolls on the bridges wisely to avoid falling into the void."
+  },
+  {
+    "grid": "_._..._1.___._...__.....__..__hHHg._____._",
+    "grid_w": 7,
+    "grid_h": 6,
+    "move": [
+      "0#1#1",
+      "0#3#3##{}",
+      "1#3#3##{}",
+      "2#3#3##{}",
+      "2#4#1##{\"0\":true}",
+      "3#4#2##{\"0\":true}"
+    ],
+    "leaf_count": 9,
+    "collectables": "21#23#22",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "30#31#32",
+    "name": "Bridge- Hopper",
+    "tip": "Time your rolls carefully on the bridges to avoid falling into the void."
+  },
+  {
+    "grid": "__.h.....1..._H_....._.._H_._____...g.___.____..._..._.",
+    "grid_w": 11,
+    "grid_h": 5,
+    "move": [
+      "9#0#1",
+      "7#0#2##{}",
+      "6#0#1##{}",
+      "4#0#2##{}",
+      "3#0#1##{\"0\":true}",
+      "3#2#3##{\"0\":true}"
+    ],
+    "leaf_count": 11,
+    "collectables": "8#17",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "3#14#25",
+    "name": "Glass Rollercoaster",
+    "tip": "Carefully time your rolls to avoid falling through the glass bridges and reaching the goal."
+  },
+  {
+    "grid": "...____.....____...g..___......._.._..__._..__.HHh..1_",
+    "grid_w": 9,
+    "grid_h": 6,
+    "move": [
+      "7#5#1",
+      "5#5#2##{}",
+      "4#5#1##{\"0\":true}",
+      "2#5#2##{\"0\":true}",
+      "1#5#1##{\"0\":true}",
+      "1#4#3##{\"0\":true}"
+    ],
+    "leaf_count": 22,
+    "collectables": "25#33#42",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "49#48#47",
+    "name": "Glass Glider",
+    "tip": "Use the glass tiles to your advantage and roll carefully to avoid breaking them. The goal is closer to the edge in this level, so approach it slowly."
+  },
+  {
+    "grid": "__...1_................h__._H____H__..g._.._.",
+    "grid_w": 5,
+    "grid_h": 9,
+    "move": [
+      "0#1#1",
+      "0#3#3##{}",
+      "0#4#1##{}",
+      "1#4#2##{}",
+      "3#4#1##{\"0\":true}",
+      "3#6#3##{\"0\":true}"
+    ],
+    "leaf_count": 25,
+    "collectables": "4#10",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "23#28#33",
+    "name": "Glass Gargoyle's Gauntlet",
+    "tip": "Carefully time your rolls on the glass bridges to avoid breaking them, focusing on maintaining your momentum towards the goal."
+  },
+  {
+    "grid": "1_..____....._.....__.....hHHg.....__...",
+    "grid_w": 8,
+    "grid_h": 5,
+    "move": [
+      "0#0#1",
+      "0#2#3##{}",
+      "1#2#3##{}",
+      "2#2#3##{}",
+      "2#3#1##{\"0\":true}",
+      "3#3#2##{\"0\":true}"
+    ],
+    "leaf_count": 18,
+    "collectables": "11#16#3",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "26#27#28",
+    "name": "Block Bridge Dash",
+    "tip": "Time your roll carefully to avoid breaking the glass bridges."
+  },
+  {
+    "grid": "___..__1.....__...__.....gHHh.....__...__.._..___.._____",
+    "grid_w": 8,
+    "grid_h": 7,
+    "move": [
+      "7#0#1",
+      "7#2#3##{}",
+      "7#3#1##{}",
+      "5#3#2##{}",
+      "4#3#1##{\"0\":true}",
+      "2#3#2##{\"0\":true}"
+    ],
+    "leaf_count": 15,
+    "collectables": "4",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "28#27#26",
+    "name": "Bridge Bounce",
+    "tip": "Time your rolls carefully on the bridges to avoid falling into the void."
+  },
+  {
+    "grid": "___.._.._1_......__._.HHh_.__...._..g._...._.._._._____",
+    "grid_w": 5,
+    "grid_h": 11,
+    "move": [
+      "4#1#1",
+      "4#3#3##{}",
+      "4#4#1##{\"0\":true}",
+      "2#4#2##{\"0\":true}",
+      "1#4#1##{\"0\":true}",
+      "1#6#3##{\"0\":true}"
+    ],
+    "leaf_count": 16,
+    "collectables": "11#39",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "24#23#22",
+    "name": "Glass Glide Gap",
+    "tip": "Carefully navigate the glass bridges, as standing on them too long will cause them to break. Use the safe floor tiles to regain balance when needed."
+  },
+  {
+    "grid": "....__.....hHHg_....__........_.1.......",
+    "grid_w": 8,
+    "grid_h": 5,
+    "move": [
+      "0#4#1",
+      "0#3#3##{}",
+      "0#1#1##{}",
+      "1#1#2##{}",
+      "3#1#1##{\"0\":true}",
+      "4#1#2##{\"0\":true}"
+    ],
+    "leaf_count": 47,
+    "collectables": "16",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "11#12#13",
+    "name": "Rolling River",
+    "tip": "Carefully time your rolls across the bridges to avoid falling into the voids."
+  },
+  {
+    "grid": "__._.___....__......_..._g._.............._......_.._H_.__._H_..1..h._",
+    "grid_w": 7,
+    "grid_h": 10,
+    "move": [
+      "1#9#1",
+      "2#9#2##{}",
+      "4#9#1##{\"0\":true}",
+      "4#8#3##{\"0\":true}",
+      "4#6#1##{\"0\":true}",
+      "4#5#3##{\"0\":true}"
+    ],
+    "leaf_count": 13,
+    "collectables": "68#39#45",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "67#60#53",
+    "name": "Block's Precarious Passage",
+    "tip": "Carefully navigate the bridges and avoid the glass tiles to reach the goal."
+  },
+  {
+    "grid": "...__._1............___._g...HHh.._..___.__..___",
+    "grid_w": 8,
+    "grid_h": 6,
+    "move": [
+      "7#0#1",
+      "7#2#3##{}",
+      "7#3#1##{\"0\":true}",
+      "5#3#2##{\"0\":true}",
+      "4#3#1##{\"0\":true}",
+      "2#3#2##{\"0\":true}"
+    ],
+    "leaf_count": 12,
+    "collectables": "36#19",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "31#30#29",
+    "name": "Precarious Precipice",
+    "tip": "Carefully navigate the bridges and avoid standing on glass tiles to reach the goal."
+  },
+  {
+    "grid": "____.....hHH...g...__._..._.._._____1____.___",
+    "grid_w": 9,
+    "grid_h": 5,
+    "move": [
+      "0#4#1",
+      "0#3#3##{}",
+      "0#1#1##{\"0\":true}",
+      "1#1#2##{\"0\":true}",
+      "3#1#1##{\"0\":true}",
+      "4#1#2##{\"0\":true}"
+    ],
+    "leaf_count": 12,
+    "collectables": "27#30#21",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "9#10#11",
+    "name": "Rolling Glass Gauntlet",
+    "tip": "Be precise when navigating the narrow glass bridges to avoid breaking them."
+  },
+  {
+    "grid": "......___..__..........._..__..._.....gHHh.....1__.___......",
+    "grid_w": 12,
+    "grid_h": 5,
+    "move": [
+      "11#3#1",
+      "9#3#2##{}",
+      "8#3#1##{}",
+      "6#3#2##{}",
+      "5#3#1##{\"0\":true}",
+      "3#3#2##{\"0\":true}"
+    ],
+    "leaf_count": 38,
+    "collectables": "43#57#59",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "41#40#39",
+    "name": "Bridge Bouncer",
+    "tip": "Use the bridges to gain height and reach the goal without falling into the void."
+  },
+  {
+    "grid": "_......__.g...___H_..___H_._.__h....__._....___.._._...1",
+    "grid_w": 7,
+    "grid_h": 8,
+    "move": [
+      "6#7#1",
+      "6#6#3##{}",
+      "6#4#1##{}",
+      "4#4#2##{}",
+      "3#4#1##{\"0\":true}",
+      "3#3#3##{\"0\":true}"
+    ],
+    "leaf_count": 17,
+    "collectables": "13#52",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "31#24#17",
+    "name": "Glass Hop Challenge",
+    "tip": "Use bridges wisely to safely cross the glass tiles and avoid falling into the void."
+  },
+  {
+    "grid": ".h..1_H_.__H_._...._...._...._.g........_..____..___....__..",
+    "grid_w": 5,
+    "grid_h": 12,
+    "move": [
+      "4#0#1",
+      "2#0#2##{}",
+      "1#0#1##{\"0\":true}",
+      "1#2#3##{\"0\":true}",
+      "1#3#1##{\"0\":true}",
+      "1#5#3##{\"0\":true}"
+    ],
+    "leaf_count": 12,
+    "collectables": "17#21",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "1#6#11",
+    "name": "Precarious Pathway",
+    "tip": "Carefully navigate narrow bridges and avoid glass tiles to reach the goal."
+  },
+  {
+    "grid": "....1__....._h...__H_..._H_....g..._.........._.",
+    "grid_w": 6,
+    "grid_h": 8,
+    "move": [
+      "4#0#1",
+      "2#0#2##{}",
+      "2#1#2##{}",
+      "2#2#2##{}",
+      "1#2#1##{\"0\":true}",
+      "1#4#3##{\"0\":true}"
+    ],
+    "leaf_count": 38,
+    "collectables": "44#27#11",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "13#19#25",
+    "name": "Rolling Bridge Maze",
+    "tip": "Time your jumps on the bridges to avoid falling through the glass."
+  },
+  {
+    "grid": ".__........g.......__..._....._H_.__H_...h..1",
+    "grid_w": 5,
+    "grid_h": 9,
+    "move": [
+      "4#8#1",
+      "2#8#2##{}",
+      "1#8#1##{\"0\":true}",
+      "1#7#3##{\"0\":true}",
+      "1#5#1##{\"0\":true}",
+      "1#4#3##{\"0\":true}"
+    ],
+    "leaf_count": 12,
+    "collectables": "42",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "41#36#31",
+    "name": "Glass Glide",
+    "tip": "Carefully navigate the glass tiles, as standing on them breaks them and slows down progress. Use bridges wisely to avoid falling into the void."
+  },
+  {
+    "grid": "..____.__.gHHh..._..___...._..._...._...___1__.__._._.",
+    "grid_w": 9,
+    "grid_h": 6,
+    "move": [
+      "7#4#1",
+      "7#3#3##{}",
+      "7#1#1##{}",
+      "5#1#2##{}",
+      "4#1#1##{\"0\":true}",
+      "2#1#2##{\"0\":true}"
+    ],
+    "leaf_count": 18,
+    "collectables": "25#6#26",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "13#12#11",
+    "name": "Block Bridge Balance",
+    "tip": "Carefully time your rolls on the bridges to avoid falling into the void."
+  },
+  {
+    "grid": "....__....__.g.._.._._..____._.._H____H_1..h_....._..._",
+    "grid_w": 5,
+    "grid_h": 11,
+    "move": [
+      "0#8#1",
+      "1#8#2##{}",
+      "3#8#1##{\"0\":true}",
+      "3#7#3##{\"0\":true}",
+      "3#5#1##{\"0\":true}",
+      "3#4#3##{\"0\":true}"
+    ],
+    "leaf_count": 26,
+    "collectables": "45",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "43#38#33",
+    "name": "Glass Glide Gauntlet",
+    "tip": "Carefully navigate the glass bridges, as standing on them too long may result in breakage and a costly detour."
+  },
+  {
+    "grid": "_1.____..___...._....__.__......_.hHH...g.._..__._...___.__.......",
+    "grid_w": 11,
+    "grid_h": 6,
+    "move": [
+      "1#0#1",
+      "1#2#3##{}",
+      "1#3#1##{\"0\":true}",
+      "2#3#2##{\"0\":true}",
+      "4#3#1##{\"0\":true}",
+      "5#3#2##{\"0\":true}"
+    ],
+    "leaf_count": 15,
+    "collectables": "39#60",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "34#35#36",
+    "name": "Bridge Dance",
+    "tip": "Carefully time your roll across the bridges to avoid falling into the voids."
+  },
+  {
+    "grid": "__........_.......g.___._H_....._._H_____.1..h._..",
+    "grid_w": 10,
+    "grid_h": 5,
+    "move": [
+      "2#4#1",
+      "3#4#2##{}",
+      "5#4#1##{\"0\":true}",
+      "5#3#3##{\"0\":true}",
+      "5#1#1##{\"0\":true}",
+      "6#1#2##{\"0\":true}"
+    ],
+    "leaf_count": 12,
+    "collectables": "14",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "45#35#25",
+    "name": "Rolling Bridge Path",
+    "tip": "Carefully time your rolls across the bridges to avoid falling into the voids."
+  },
+  {
+    "grid": "_.._....g..._H_.__H_...h._....1....",
+    "grid_w": 5,
+    "grid_h": 7,
+    "move": [
+      "0#6#1",
+      "1#6#2##{}",
+      "1#5#2##{}",
+      "1#4#2##{}",
+      "3#4#1##{\"0\":true}",
+      "3#3#3##{\"0\":true}"
+    ],
+    "leaf_count": 19,
+    "collectables": "27",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "23#18#13",
+    "name": "Bridge Bouncer",
+    "tip": "Use bridges to gain height and reach the goal. Be careful not to break the glass bridges with multiple visits."
+  },
+  {
+    "grid": "..__.._....._.g.......__...___...__.__H_..__H_..__h..1....._",
+    "grid_w": 6,
+    "grid_h": 10,
+    "move": [
+      "5#8#1",
+      "3#8#2##{}",
+      "2#8#1##{\"0\":true}",
+      "2#7#3##{\"0\":true}",
+      "2#5#1##{\"0\":true}",
+      "2#4#3##{\"0\":true}"
+    ],
+    "leaf_count": 24,
+    "collectables": "47#32#35",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "50#44#38",
+    "name": "Rolling Bridge Puzzle",
+    "tip": "Utilize the bridges efficiently to avoid falling into voids and reach the goal."
+  },
+  {
+    "grid": ".__...._1..___..........__...g...HHh_._...__.",
+    "grid_w": 9,
+    "grid_h": 5,
+    "move": [
+      "8#0#1",
+      "8#2#3##{}",
+      "8#3#1##{\"0\":true}",
+      "6#3#2##{\"0\":true}",
+      "5#3#1##{\"0\":true}",
+      "3#3#2##{\"0\":true}"
+    ],
+    "leaf_count": 12,
+    "collectables": "17#21#23",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "35#34#33",
+    "name": "Rolling Rift",
+    "tip": "Carefully maneuver the block onto the bridge to reach the narrow glass path, avoiding multiple visits to hazardous tiles."
+  },
+  {
+    "grid": "........_..g....___H_....__H_.._._.h.._____..._..._...1.",
+    "grid_w": 8,
+    "grid_h": 7,
+    "move": [
+      "6#6#1",
+      "4#6#2##{}",
+      "4#5#2##{}",
+      "4#4#2##{}",
+      "3#4#1##{\"0\":true}",
+      "3#3#3##{\"0\":true}"
+    ],
+    "leaf_count": 15,
+    "collectables": "53#51#44",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "35#27#19",
+    "name": "Glass Rollercoaster",
+    "tip": "Carefully time your rolls across the bridges to avoid breaking the glass below."
+  },
+  {
+    "grid": "...___.g._.__H_____H_.___h....___..____...__._1.",
+    "grid_w": 6,
+    "grid_h": 8,
+    "move": [
+      "4#7#1",
+      "4#6#3##{}",
+      "4#4#1##{}",
+      "2#4#2##{}",
+      "1#4#1##{\"0\":true}",
+      "1#3#3##{\"0\":true}"
+    ],
+    "leaf_count": 12,
+    "collectables": "34#39#40",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "25#19#13",
+    "name": "Bridge Dance",
+    "tip": "Carefully time your roll onto the bridges to avoid falling into the void."
+  },
+  {
+    "grid": "_....._._.._._....___.__.....__...._.g...HHh..1_....___._._.",
+    "grid_w": 12,
+    "grid_h": 5,
+    "move": [
+      "10#3#1",
+      "8#3#2##{}",
+      "7#3#1##{\"0\":true}",
+      "5#3#2##{\"0\":true}",
+      "4#3#1##{\"0\":true}",
+      "2#3#2##{\"0\":true}"
+    ],
+    "leaf_count": 19,
+    "collectables": "15",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "43#42#41",
+    "name": "Glass Glider Challenge",
+    "tip": "Carefully time your rolls across the bridges to avoid breaking the glass tiles and reaching the goal."
+  },
+  {
+    "grid": ".1...._.....__..h___._H__.._H_....g._........____..._.",
+    "grid_w": 6,
+    "grid_h": 9,
+    "move": [
+      "1#0#1",
+      "2#0#2##{}",
+      "2#1#2##{}",
+      "2#2#2##{}",
+      "4#2#1##{\"0\":true}",
+      "4#4#3##{\"0\":true}"
+    ],
+    "leaf_count": 16,
+    "collectables": "15#9",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "16#22#28",
+    "name": "Balance Bridge",
+    "tip": "Carefully time your rolls on the bridges to avoid falling off the edges."
+  },
+  {
+    "grid": "....__..g._.._H___._H__...h___....____....._...1___.__.__.__",
+    "grid_w": 6,
+    "grid_h": 10,
+    "move": [
+      "5#7#1",
+      "3#7#2##{}",
+      "2#7#1##{}",
+      "2#6#3##{}",
+      "2#4#1##{\"0\":true}",
+      "2#3#3##{\"0\":true}"
+    ],
+    "leaf_count": 16,
+    "collectables": "18#44#24",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "26#20#14",
+    "name": "Glass Glide",
+    "tip": "Carefully navigate the glass bridges to reach the goal without breaking them. The solution path includes multiple visits to the glass bridges, so tread lightly."
+  },
+  {
+    "grid": "......_....1__...._._......_.._.._.._..__...gHHh...__......_",
+    "grid_w": 6,
+    "grid_h": 10,
+    "move": [
+      "5#1#1",
+      "5#3#3##{}",
+      "5#4#1##{}",
+      "5#6#3##{}",
+      "5#7#1##{\"0\":true}",
+      "3#7#2##{\"0\":true}"
+    ],
+    "leaf_count": 43,
+    "collectables": "2",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "47#46#45",
+    "name": "Glass Rollercoaster",
+    "tip": "Carefully time your rolls on glass bridges to avoid breaking them."
+  },
+  {
+    "grid": "._._....._...g.____H_..._H___..h___....__....____...1.",
+    "grid_w": 6,
+    "grid_h": 9,
+    "move": [
+      "4#8#1",
+      "2#8#2##{}",
+      "1#8#1##{}",
+      "1#7#3##{}",
+      "1#5#1##{\"0\":true}",
+      "1#4#3##{\"0\":true}"
+    ],
+    "leaf_count": 12,
+    "collectables": "51#30#37",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "31#25#19",
+    "name": "Block's Bridge Battle",
+    "tip": "Carefully time your roll across the bridges to avoid falling into the void."
+  },
+  {
+    "grid": "...........g..._H____H_.._h...___...__..____1",
+    "grid_w": 5,
+    "grid_h": 9,
+    "move": [
+      "4#8#1",
+      "4#7#3##{}",
+      "4#5#1##{}",
+      "2#5#2##{}",
+      "1#5#1##{\"0\":true}",
+      "1#4#3##{\"0\":true}"
+    ],
+    "leaf_count": 11,
+    "collectables": "28#38",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "26#21#16",
+    "name": "Glass Gauntlet",
+    "tip": "Approach the glass bridges cautiously, as standing on them too long will cause them to break. Plan your rolls carefully to minimize your time on each bridge."
+  },
+  {
+    "grid": "..._._.._........__.......1_..__...._.gHHh..._____....",
+    "grid_w": 9,
+    "grid_h": 6,
+    "move": [
+      "8#2#1",
+      "6#2#2##{}",
+      "6#3#2##{}",
+      "6#4#2##{}",
+      "5#4#1##{\"0\":true}",
+      "3#4#2##{\"0\":true}"
+    ],
+    "leaf_count": 54,
+    "collectables": "44#15",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "41#40#39",
+    "name": "Rolling Bridge Marathon",
+    "tip": "Time your rolls carefully on the bridges to avoid falling into the void."
+  },
+  {
+    "grid": "__....__._.....___.....__...g...HHh......__..__.......___..__1_",
+    "grid_w": 9,
+    "grid_h": 7,
+    "move": [
+      "7#6#1",
+      "7#5#3##{}",
+      "7#3#1##{\"0\":true}",
+      "5#3#2##{\"0\":true}",
+      "4#3#1##{\"0\":true}",
+      "2#3#2##{\"0\":true}"
+    ],
+    "leaf_count": 17,
+    "collectables": "38#29#58",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "34#33#32",
+    "name": "Blocky Bridgeway",
+    "tip": "Carefully time your rolls on the bridges to avoid falling into the void."
+  },
+  {
+    "grid": "__...___.1..._......_._...h____._H____._H__....g._......",
+    "grid_w": 7,
+    "grid_h": 8,
+    "move": [
+      "2#1#1",
+      "3#1#2##{}",
+      "3#2#2##{}",
+      "3#3#2##{}",
+      "5#3#1##{\"0\":true}",
+      "5#5#3##{\"0\":true}"
+    ],
+    "leaf_count": 35,
+    "collectables": "14",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "26#33#40",
+    "name": "Glass Rollercoaster",
+    "tip": "Carefully time your rolls on the bridges to avoid falling through the glass."
+  },
+  {
+    "grid": "_.__._._._..1....___..........._.._.__..__.._hHHg.___.____..",
+    "grid_w": 10,
+    "grid_h": 6,
+    "move": [
+      "2#1#1",
+      "3#1#2##{}",
+      "5#1#1##{}",
+      "5#3#3##{}",
+      "5#4#1##{\"0\":true}",
+      "6#4#2##{\"0\":true}"
+    ],
+    "leaf_count": 29,
+    "collectables": "25#13#23",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "45#46#47",
+    "name": "Block Bridge Bounce",
+    "tip": "Use strategic bounces on bridges to reach areas with higher visit counts and eventually reach the goal."
+  },
+  {
+    "grid": "._._1___....__....__h.._._H_.___H___..g.__....__....._",
+    "grid_w": 6,
+    "grid_h": 9,
+    "move": [
+      "4#0#1",
+      "4#2#3##{}",
+      "3#2#3##{}",
+      "2#2#3##{}",
+      "2#3#1##{\"0\":true}",
+      "2#5#3##{\"0\":true}"
+    ],
+    "leaf_count": 17,
+    "collectables": "2#28",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "20#26#32",
+    "name": "Glass Bridge Navigation",
+    "tip": "Carefully time your roll across the bridge segments to avoid falling through the glass."
+  },
+  {
+    "grid": ".1...._....._.____.hHH..____..._....__..g._...........",
+    "grid_w": 6,
+    "grid_h": 9,
+    "move": [
+      "1#0#1",
+      "1#2#3##{}",
+      "1#3#1##{\"0\":true}",
+      "2#3#2##{\"0\":true}",
+      "4#3#1##{\"0\":true}",
+      "4#5#3##{\"0\":true}"
+    ],
+    "leaf_count": 18,
+    "collectables": "9#11#5",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "19#20#21",
+    "name": "Glass Gorge Gauntlet",
+    "tip": "Carefully navigate the glass panels, as standing on them too long will cause them to break. Use the bridges to avoid prolonged contact with the glass."
+  },
+  {
+    "grid": ".__....__..._....._...g...._H_._._H_....h...._H__.._H_.1..h.._....",
+    "grid_w": 6,
+    "grid_h": 11,
+    "move": [
+      "1#9#1",
+      "2#9#2##{}",
+      "4#9#1##{\"1\":true}",
+      "4#8#3##{\"1\":true}",
+      "4#6#1##{\"0\":true,\"1\":true}",
+      "4#5#3##{\"0\":true,\"1\":true}"
+    ],
+    "leaf_count": 37,
+    "collectables": "59#62",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "40#34#28|58#52#46",
+    "name": "Block's Bridgeway",
+    "tip": "Carefully time your rolls on bridges to avoid falling into the void."
+  },
+  {
+    "grid": "..._.....g._.._H_____H____.h..1.....",
+    "grid_w": 6,
+    "grid_h": 6,
+    "move": [
+      "0#5#1",
+      "1#5#2##{}",
+      "3#5#1##{}",
+      "4#5#2##{}",
+      "4#4#2##{}",
+      "3#4#1##{\"0\":true}",
+      "3#3#3##{\"0\":true}"
+    ],
+    "leaf_count": 9,
+    "collectables": "26",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "27#21#15",
+    "name": "Glass Glide",
+    "tip": "Carefully time your rolls across the bridges to avoid breaking the glass below."
+  },
+  {
+    "grid": "_......__..._..__..__...._.___......1..hHH......__.___...g.._____.__....",
+    "grid_w": 12,
+    "grid_h": 6,
+    "move": [
+      "0#3#1",
+      "1#3#2##{}",
+      "3#3#1##{\"0\":true}",
+      "4#3#2##{\"0\":true}",
+      "6#3#1##{\"0\":true}",
+      "7#3#2##{\"0\":true}",
+      "7#4#2##{\"0\":true}"
+    ],
+    "leaf_count": 17,
+    "collectables": "6",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "39#40#41",
+    "name": "Rolling River",
+    "tip": "Use strategic jumps to ride the bridges across the voids and avoid glass tiles."
+  },
+  {
+    "grid": ".....1..h._._H__._H__.......g.........__",
+    "grid_w": 5,
+    "grid_h": 8,
+    "move": [
+      "0#1#1",
+      "1#1#2##{}",
+      "3#1#1##{\"0\":true}",
+      "3#3#3##{\"0\":true}",
+      "3#4#1##{\"0\":true}",
+      "1#4#2##{\"0\":true}",
+      "1#5#2##{\"0\":true}"
+    ],
+    "leaf_count": 24,
+    "collectables": "25#32#33",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "8#13#18",
+    "name": "Bridge Balance",
+    "tip": "Carefully time your rolls across the bridges to avoid falling into the voids."
+  },
+  {
+    "grid": ".__..__.._....__.1_....___...__..._.____..._.____..........__.._...gHHh._._..___.",
+    "grid_w": 9,
+    "grid_h": 9,
+    "move": [
+      "8#1#1",
+      "8#3#3##{}",
+      "8#4#1##{}",
+      "8#6#3##{}",
+      "7#6#3##{}",
+      "7#7#1##{\"0\":true}",
+      "5#7#2##{\"0\":true}"
+    ],
+    "leaf_count": 10,
+    "collectables": "53",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "70#69#68",
+    "name": "Rolling Riddles",
+    "tip": "Use strategic placement of the block on bridges to reach otherwise inaccessible areas. Be mindful of the number of visits to the bridge tiles to complete the level."
+  },
+  {
+    "grid": "___........g..._H__._H_._.h.__....._....____1",
+    "grid_w": 5,
+    "grid_h": 9,
+    "move": [
+      "4#8#1",
+      "4#7#3##{}",
+      "3#7#3##{}",
+      "2#7#3##{}",
+      "1#7#3##{}",
+      "1#5#1##{\"0\":true}",
+      "1#4#3##{\"0\":true}"
+    ],
+    "leaf_count": 12,
+    "collectables": "31",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "26#21#16",
+    "name": "Glass Glide Gap",
+    "tip": "Carefully time your roll across the glass bridges to avoid breaking them and falling into the void."
+  },
+  {
+    "grid": "..._____...___._...._.._..g.__.___H_._..__H_._..._h.__..__..._..__......__....1_____....",
+    "grid_w": 8,
+    "grid_h": 11,
+    "move": [
+      "6#9#1",
+      "4#9#2##{}",
+      "3#9#1##{}",
+      "3#8#3##{}",
+      "2#8#3##{}",
+      "2#6#1##{\"0\":true}",
+      "2#5#3##{\"0\":true}"
+    ],
+    "leaf_count": 48,
+    "collectables": "14#75",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "50#42#34",
+    "name": "Precarious Peak",
+    "tip": "Carefully navigate the glass bridges, as they may break under the block's weight, forcing you to backtrack and find an alternative route."
+  },
+  {
+    "grid": ".1........h__.._H__.._H__.....___.._..........g.............",
+    "grid_w": 6,
+    "grid_h": 10,
+    "move": [
+      "1#0#1",
+      "2#0#2##{}",
+      "2#1#2##{}",
+      "4#1#1##{\"0\":true}",
+      "4#3#3##{\"0\":true}",
+      "4#4#1##{\"0\":true}",
+      "4#6#3##{\"0\":true}"
+    ],
+    "leaf_count": 35,
+    "collectables": "41",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "10#16#22",
+    "name": "Precarious Pathway",
+    "tip": "Carefully navigate the bridges to avoid falling into the voids."
+  },
+  {
+    "grid": "..__.._........h..1.._..._H__..._..._H____.......____...g.._____..._.._.__.._",
+    "grid_w": 11,
+    "grid_h": 7,
+    "move": [
+      "7#1#1",
+      "5#1#2##{}",
+      "4#1#1##{\"0\":true}",
+      "4#3#3##{\"0\":true}",
+      "4#4#1##{\"0\":true}",
+      "2#4#2##{\"0\":true}",
+      "2#5#2##{\"0\":true}"
+    ],
+    "leaf_count": 38,
+    "collectables": "30#68#16",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "15#26#37",
+    "name": "Glass Maze Mastery",
+    "tip": "Carefully navigate the bridges and avoid falling through the glass tiles."
+  },
+  {
+    "grid": ".......___._.g......__.._H_........._H_..___...._h..._.___.___.....1.______......___",
+    "grid_w": 12,
+    "grid_h": 7,
+    "move": [
+      "7#5#1",
+      "5#5#2##{}",
+      "4#5#1##{}",
+      "2#5#2##{}",
+      "2#4#2##{}",
+      "1#4#1##{\"0\":true}",
+      "1#3#3##{\"0\":true}"
+    ],
+    "leaf_count": 35,
+    "collectables": "76",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "49#37#25",
+    "name": "Bridge Hopper's Maze",
+    "tip": "Time your jumps on the bridges to avoid falling into the voids. The solution path requires precise timing and careful planning to reach the goal."
+  },
+  {
+    "grid": "....___.g..._..........__.._____H_..._H_..__h.___............1__...._.._",
+    "grid_w": 6,
+    "grid_h": 12,
+    "move": [
+      "1#10#1",
+      "1#9#3##{}",
+      "2#9#3##{}",
+      "2#7#1##{\"0\":true}",
+      "2#6#3##{\"0\":true}",
+      "2#4#1##{\"0\":true}",
+      "2#3#3##{\"0\":true}"
+    ],
+    "leaf_count": 22,
+    "collectables": "57#50",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "44#38#32",
+    "name": "Block Bridge Dance",
+    "tip": "Carefully time your rolls on the glass bridges to avoid breaking them and falling into the void."
+  },
+  {
+    "grid": ".....___.___.....__..__...___..._..__......1.gHHh........_______._",
+    "grid_w": 11,
+    "grid_h": 6,
+    "move": [
+      "10#3#1",
+      "8#3#2##{}",
+      "7#3#1##{}",
+      "5#3#2##{}",
+      "5#4#2##{}",
+      "4#4#1##{\"0\":true}",
+      "2#4#2##{\"0\":true}"
+    ],
+    "leaf_count": 27,
+    "collectables": "30#64#49",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "48#47#46",
+    "name": "Glass Glide Gauntlet",
+    "tip": "Carefully time your rolls on the glass bridges to avoid shattering them and falling into the void."
+  },
+  {
+    "grid": "__..____..g.._.._H_...._H_.....h...___.___......_.._...__.....1",
+    "grid_w": 7,
+    "grid_h": 9,
+    "move": [
+      "6#8#1",
+      "4#8#2##{}",
+      "4#7#2##{}",
+      "3#7#1##{}",
+      "3#6#3##{}",
+      "3#4#1##{\"0\":true}",
+      "3#3#3##{\"0\":true}"
+    ],
+    "leaf_count": 28,
+    "collectables": "45#50#54",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "31#24#17",
+    "name": "Block Bridge Blitz",
+    "tip": "Use bridges strategically to bypass voids and reach the goal efficiently."
+  },
+  {
+    "grid": "..____..._...__......hHHg......__..._.._____.1..__.__._......__..._...._",
+    "grid_w": 9,
+    "grid_h": 8,
+    "move": [
+      "0#5#1",
+      "1#5#2##{}",
+      "1#4#2##{}",
+      "1#3#2##{}",
+      "1#2#2##{}",
+      "3#2#1##{\"0\":true}",
+      "4#2#2##{\"0\":true}"
+    ],
+    "leaf_count": 24,
+    "collectables": "1",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "21#22#23",
+    "name": "Rolling Bridge",
+    "tip": "Carefully time your roll across the bridges to avoid falling into the void."
+  },
+  {
+    "grid": "........_._........____._..__..__....hHHg.___....__.._._........__...__....__.1.__..__._",
+    "grid_w": 11,
+    "grid_h": 8,
+    "move": [
+      "1#7#1",
+      "1#6#3##{}",
+      "1#4#1##{}",
+      "2#4#2##{}",
+      "2#3#2##{}",
+      "4#3#1##{\"0\":true}",
+      "5#3#2##{\"0\":true}"
+    ],
+    "leaf_count": 42,
+    "collectables": "58",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "37#38#39",
+    "name": "Rolling Bridge Challenge",
+    "tip": "Carefully time your roll across the bridges to avoid falling into the voids."
+  },
+  {
+    "grid": "_._.._..........._..g.._._H_._._H_.___h..____....__.....__.....__1.__._.",
+    "grid_w": 6,
+    "grid_h": 12,
+    "move": [
+      "5#10#1",
+      "5#9#3##{}",
+      "5#7#1##{}",
+      "3#7#2##{}",
+      "3#6#2##{}",
+      "2#6#1##{\"0\":true}",
+      "2#5#3##{\"0\":true}"
+    ],
+    "leaf_count": 17,
+    "collectables": "59",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "38#32#26",
+    "name": "Glass Glide Challenge",
+    "tip": "Carefully roll onto the bridges to avoid falling through the glass tiles, focusing on the optimal path with the least number of visits."
+  },
+  {
+    "grid": ".....__......__......._._..g.___.....___....____....HHh___..__..._____....____.1",
+    "grid_w": 8,
+    "grid_h": 10,
+    "move": [
+      "7#9#1",
+      "7#8#3##{}",
+      "6#8#3##{}",
+      "6#6#1##{\"0\":true}",
+      "4#6#2##{\"0\":true}",
+      "3#6#1##{\"0\":true}",
+      "3#5#3##{\"0\":true}"
+    ],
+    "leaf_count": 16,
+    "collectables": "70",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "54#53#52",
+    "name": "Block's Bridgeway",
+    "tip": "Roll carefully on the bridges to avoid falling into voids."
+  },
+  {
+    "grid": "_.___....__._g..___H_._._H_____h.____..___......_....1_.........._",
+    "grid_w": 6,
+    "grid_h": 11,
+    "move": [
+      "5#8#1",
+      "3#8#2##{}",
+      "2#8#1##{}",
+      "2#7#3##{}",
+      "1#7#3##{}",
+      "1#5#1##{\"0\":true}",
+      "1#4#3##{\"0\":true}"
+    ],
+    "leaf_count": 53,
+    "collectables": "61",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "31#25#19",
+    "name": "Rolling Riddler",
+    "tip": "Navigate carefully around the glass panels, as one misstep could lead to a costly detour."
+  },
+  {
+    "grid": "_....__.._..g..___._.......___...._H___...___H____..__.h..1..___..__..__..____._",
+    "grid_w": 10,
+    "grid_h": 8,
+    "move": [
+      "8#5#1",
+      "6#5#2##{}",
+      "5#5#1##{\"0\":true}",
+      "5#4#3##{\"0\":true}",
+      "5#2#1##{\"0\":true}",
+      "3#2#2##{\"0\":true}",
+      "3#1#2##{\"0\":true}"
+    ],
+    "leaf_count": 16,
+    "collectables": "32#22#25",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "55#45#35",
+    "name": "Rolling Bridge",
+    "tip": "Use the bridges wisely to reach areas with multiple visited tiles and avoid falling into the void."
+  },
+  {
+    "grid": "...__._.g.HHh....__.._......____.1_",
+    "grid_w": 7,
+    "grid_h": 5,
+    "move": [
+      "5#4#1",
+      "5#3#3##{}",
+      "5#1#1##{\"0\":true}",
+      "3#1#2##{\"0\":true}",
+      "2#1#1##{\"0\":true}",
+      "2#3#3##{\"0\":true}",
+      "1#3#3##{\"0\":true}"
+    ],
+    "leaf_count": 22,
+    "collectables": "19#25",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "12#11#10",
+    "name": "Precarious Pathway",
+    "tip": "Carefully time your rolls on the bridges to avoid falling into the void."
+  },
+  {
+    "grid": "..___._.g.HHh_...__._...__.._____1_",
+    "grid_w": 7,
+    "grid_h": 5,
+    "move": [
+      "5#4#1",
+      "5#3#3##{}",
+      "5#1#1##{\"0\":true}",
+      "3#1#2##{\"0\":true}",
+      "2#1#1##{\"0\":true}",
+      "2#3#3##{\"0\":true}",
+      "1#3#3##{\"0\":true}"
+    ],
+    "leaf_count": 16,
+    "collectables": "16",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "12#11#10",
+    "name": "Bridge Hopper",
+    "tip": "Time your rolls perfectly on the bridges to avoid falling into the void."
+  },
+  {
+    "grid": "__...__..____g.___........__.._....___.._.__.___..____H__.._.___H_..._..__h..1...__.....__",
+    "grid_w": 10,
+    "grid_h": 9,
+    "move": [
+      "7#7#1",
+      "5#7#2##{}",
+      "4#7#1##{\"0\":true}",
+      "4#6#3##{\"0\":true}",
+      "4#4#1##{\"0\":true}",
+      "4#3#3##{\"0\":true}",
+      "3#3#3##{\"0\":true}"
+    ],
+    "leaf_count": 48,
+    "collectables": "48#86#85",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "74#64#54",
+    "name": "Rolling Glass Bridge",
+    "tip": "Carefully time your rolls across the bridges to avoid falling into the void below. The glass bridges may break if you stand on them too long."
+  },
+  {
+    "grid": "___..__..__....hHHg.._.....__.._._..........1...__..__.",
+    "grid_w": 11,
+    "grid_h": 5,
+    "move": [
+      "0#4#1",
+      "1#4#2##{}",
+      "3#4#1##{}",
+      "3#3#3##{}",
+      "4#3#3##{}",
+      "4#1#1##{\"0\":true}",
+      "5#1#2##{\"0\":true}"
+    ],
+    "leaf_count": 42,
+    "collectables": "51#35",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "15#16#17",
+    "name": "Rolling River",
+    "tip": "Use the bridges wisely to avoid falling into voids and reach the goal efficiently."
+  },
+  {
+    "grid": "...___._.1..hHH.___._.__...__._......___.._g._..____..",
+    "grid_w": 9,
+    "grid_h": 6,
+    "move": [
+      "0#1#1",
+      "1#1#2##{}",
+      "3#1#1##{\"0\":true}",
+      "4#1#2##{\"0\":true}",
+      "6#1#1##{\"0\":true}",
+      "6#3#3##{\"0\":true}",
+      "7#3#3##{\"0\":true}"
+    ],
+    "leaf_count": 18,
+    "collectables": "34#24#11",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "12#13#14",
+    "name": "Glass Glide Gap",
+    "tip": "Carefully roll onto the bridges to avoid falling into the voids and break the necessary glasses to reach the goal."
+  },
+  {
+    "grid": "_.h..1__H_._._H___....__....___.....__.g..__....",
+    "grid_w": 6,
+    "grid_h": 8,
+    "move": [
+      "5#0#1",
+      "3#0#2##{}",
+      "2#0#1##{\"0\":true}",
+      "2#2#3##{\"0\":true}",
+      "2#3#1##{\"0\":true}",
+      "2#5#3##{\"0\":true}",
+      "3#5#3##{\"0\":true}"
+    ],
+    "leaf_count": 17,
+    "collectables": "25#40#33",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "2#8#14",
+    "name": "Glass Glide",
+    "tip": "Carefully navigate the glass tiles, as standing on them for too long will cause them to break. Use the bridges wisely to avoid falling into the void."
+  },
+  {
+    "grid": "._..__.__.._.__._.hHH.g..__.........1_.__.",
+    "grid_w": 6,
+    "grid_h": 7,
+    "move": [
+      "0#6#1",
+      "0#5#3##{}",
+      "0#3#1##{\"0\":true}",
+      "1#3#2##{\"0\":true}",
+      "3#3#1##{\"0\":true}",
+      "3#5#3##{\"0\":true}",
+      "4#5#3##{\"0\":true}"
+    ],
+    "leaf_count": 21,
+    "collectables": "35",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "18#19#20",
+    "name": "Rolling Bridge Puzzle",
+    "tip": "Time your roll across the bridges to reach the goal before the block falls off the edge."
+  },
+  {
+    "grid": "_1__..____..._....__.._.__..._...hHHg...._____..._",
+    "grid_w": 10,
+    "grid_h": 5,
+    "move": [
+      "1#0#1",
+      "1#2#3##{}",
+      "0#2#3##{}",
+      "0#3#1##{}",
+      "1#3#2##{}",
+      "3#3#1##{\"0\":true}",
+      "4#3#2##{\"0\":true}"
+    ],
+    "leaf_count": 11,
+    "collectables": "31",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "33#34#35",
+    "name": "Precarious Pathway",
+    "tip": "Carefully navigate the bridges and avoid standing on glass for too long to reach the goal."
+  },
+  {
+    "grid": ".1...h._..._H__..._H_.._..g.___....",
+    "grid_w": 7,
+    "grid_h": 5,
+    "move": [
+      "1#0#1",
+      "1#2#3##{}",
+      "2#2#3##{}",
+      "2#0#1##{}",
+      "3#0#2##{}",
+      "5#0#1##{\"0\":true}",
+      "5#2#3##{\"0\":true}"
+    ],
+    "leaf_count": 32,
+    "collectables": "24",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "5#12#19",
+    "name": "Bridge Dance",
+    "tip": "Carefully time your rolls on the bridges to avoid falling into the void."
+  },
+  {
+    "grid": "..._.._1..__.._..gHHh....___...._..____.",
+    "grid_w": 8,
+    "grid_h": 5,
+    "move": [
+      "7#0#1",
+      "7#2#3##{}",
+      "7#3#1##{}",
+      "5#3#2##{}",
+      "5#2#2##{}",
+      "4#2#1##{\"0\":true}",
+      "2#2#2##{\"0\":true}"
+    ],
+    "leaf_count": 17,
+    "collectables": "21",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "20#19#18",
+    "name": "Rolling Bridge",
+    "tip": "Use the bridges efficiently to avoid falling into the voids and reach the goal."
+  },
+  {
+    "grid": "..__...____.gHHh........__..__..1......___._....__.______..__...____.........._._____...",
+    "grid_w": 11,
+    "grid_h": 8,
+    "move": [
+      "10#2#1",
+      "8#2#2##{}",
+      "8#1#2##{}",
+      "7#1#1##{}",
+      "5#1#2##{}",
+      "4#1#1##{\"0\":true}",
+      "2#1#2##{\"0\":true}"
+    ],
+    "leaf_count": 13,
+    "collectables": "20#36#18",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "15#14#13",
+    "name": "Rolling Bridge Marathon",
+    "tip": "Time your jumps carefully on the shifting bridges to avoid falling into the void."
+  },
+  {
+    "grid": "..._._..g__....HHh...__._....._____1",
+    "grid_w": 6,
+    "grid_h": 6,
+    "move": [
+      "5#5#1",
+      "5#4#3##{}",
+      "5#2#1##{\"0\":true}",
+      "3#2#2##{\"0\":true}",
+      "2#2#1##{\"0\":true}",
+      "0#2#2##{\"0\":true}",
+      "0#1#2##{\"0\":true}"
+    ],
+    "leaf_count": 18,
+    "collectables": "18#25#7",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "17#16#15",
+    "name": "Glass Bridge Marathon",
+    "tip": "Carefully time your rolls across the bridges to avoid falling into the voids behind them."
+  },
+  {
+    "grid": "..._.._.g.__.__...__.....____..._..__H____._H_..._.h..1._____._",
+    "grid_w": 7,
+    "grid_h": 9,
+    "move": [
+      "5#7#1",
+      "3#7#2##{}",
+      "2#7#1##{\"0\":true}",
+      "2#6#3##{\"0\":true}",
+      "2#4#1##{\"0\":true}",
+      "2#3#3##{\"0\":true}",
+      "1#3#3##{\"0\":true}"
+    ],
+    "leaf_count": 15,
+    "collectables": "7#22#47",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "51#44#37",
+    "name": "Glass Rollercoaster",
+    "tip": "Carefully navigate glass bridges, as standing on them for too long will break them."
+  },
+  {
+    "grid": "____...____.hHH.g..__.........1.._..",
+    "grid_w": 6,
+    "grid_h": 6,
+    "move": [
+      "0#5#1",
+      "0#4#3##{}",
+      "0#2#1##{\"0\":true}",
+      "1#2#2##{\"0\":true}",
+      "3#2#1##{\"0\":true}",
+      "3#4#3##{\"0\":true}",
+      "4#4#3##{\"0\":true}"
+    ],
+    "leaf_count": 32,
+    "collectables": "26",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "12#13#14",
+    "name": "Bridge Dance",
+    "tip": "Carefully time your rolls across the bridges to avoid falling into the void."
+  },
+  {
+    "grid": ".....1.....__...._.._h..___H__.__H_.._.g._._..._",
+    "grid_w": 6,
+    "grid_h": 8,
+    "move": [
+      "5#0#1",
+      "3#0#2##{}",
+      "2#0#1##{}",
+      "2#2#3##{}",
+      "3#2#3##{}",
+      "3#3#1##{\"0\":true}",
+      "3#5#3##{\"0\":true}"
+    ],
+    "leaf_count": 31,
+    "collectables": "23",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "21#27#33",
+    "name": "Glass Grind Race",
+    "tip": "Carefully navigate the glass bridges to minimize breaks and reach the goal swiftly."
+  },
+  {
+    "grid": "__._...._.._..g._.._._H_____._H__.....h__......__......__.................._......___1..",
+    "grid_w": 8,
+    "grid_h": 11,
+    "move": [
+      "5#10#1",
+      "5#9#3##{}",
+      "5#7#1##{}",
+      "5#6#3##{}",
+      "6#6#3##{}",
+      "6#4#1##{\"0\":true}",
+      "6#3#3##{\"0\":true}"
+    ],
+    "leaf_count": 92,
+    "collectables": "68#36",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "38#30#22",
+    "name": "Glass Maze Grind",
+    "tip": "Carefully navigate the glass bridges, as standing on them too long may result in breakage, requiring you to backtrack and find an alternate path."
+  },
+  {
+    "grid": ".....__._..g..____._....___...._H_...__._H______..h..1_.....___",
+    "grid_w": 9,
+    "grid_h": 7,
+    "move": [
+      "8#5#1",
+      "6#5#2##{}",
+      "5#5#1##{\"0\":true}",
+      "5#4#3##{\"0\":true}",
+      "5#2#1##{\"0\":true}",
+      "3#2#2##{\"0\":true}",
+      "3#1#2##{\"0\":true}"
+    ],
+    "leaf_count": 21,
+    "collectables": "20#21#58",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "50#41#32",
+    "name": "Glass Glide",
+    "tip": "Carefully navigate the glass tiles, as standing on them multiple times will cause them to break. Use the bridges to avoid excessive glass contact."
+  },
+  {
+    "grid": "_........__..g...____......_.._.._._H_.._...._H___.._...h..1..................._........._",
+    "grid_w": 10,
+    "grid_h": 9,
+    "move": [
+      "9#5#1",
+      "7#5#2##{}",
+      "6#5#1##{\"0\":true}",
+      "6#4#3##{\"0\":true}",
+      "6#2#1##{\"0\":true}",
+      "4#2#2##{\"0\":true}",
+      "4#1#2##{\"0\":true}"
+    ],
+    "leaf_count": 94,
+    "collectables": "43#3#16",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "56#46#36",
+    "name": "Glass Rollercoaster",
+    "tip": "Navigate carefully through the glass bridges, as standing on them for too long may cause them to break."
+  },
+  {
+    "grid": "......__..g...._H__.._H__...h__.........____1___",
+    "grid_w": 6,
+    "grid_h": 8,
+    "move": [
+      "2#7#1",
+      "2#6#3##{}",
+      "1#6#3##{}",
+      "1#4#1##{}",
+      "2#4#2##{}",
+      "4#4#1##{\"0\":true}",
+      "4#3#3##{\"0\":true}"
+    ],
+    "leaf_count": 34,
+    "collectables": "36#38",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "28#22#16",
+    "name": "Glass Glide",
+    "tip": "Carefully navigate the glass bridges to avoid breaking them and reaching the goal unharmed."
+  },
+  {
+    "grid": "....__..g.__....__._H__.__H____.h..1",
+    "grid_w": 6,
+    "grid_h": 6,
+    "move": [
+      "5#5#1",
+      "3#5#2##{}",
+      "2#5#1##{\"0\":true}",
+      "2#4#3##{\"0\":true}",
+      "2#2#1##{\"0\":true}",
+      "0#2#2##{\"0\":true}",
+      "0#1#2##{\"0\":true}"
+    ],
+    "leaf_count": 16,
+    "collectables": "12#15#0",
+    "gimmick": [
+      "bridge"
+    ],
+    "bridge": "32#26#20",
+    "name": "Glass Grind Gauntlet",
+    "tip": "Carefully time your rolls on glass tiles to avoid breaking them and use the bridges wisely to reach the goal."
+  }
+]
